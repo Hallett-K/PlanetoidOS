@@ -1,5 +1,7 @@
 #include <vga.h>
 
+#include <io.h>
+
 static const size_t VGA_WIDTH = 80;
 static const size_t VGA_HEIGHT = 25;
 static uint16_t* const VGA_BUFFER = (uint16_t*) 0xB8000;
@@ -63,6 +65,7 @@ void vga_write(const char* data, size_t size)
     {
         vga_putchar(data[i]);
     }
+    vga_cursor_set(vga_column, vga_row);
 }
 
 size_t strlen(const char* str) // TEMP
@@ -90,4 +93,13 @@ void vga_writeint(uint64_t n)
     } while (n > 0);
 
     vga_write(pos, buffer + sizeof(buffer) - pos);
+}
+
+void vga_cursor_set(uint16_t x, uint16_t y)
+{
+    uint16_t pos = y * VGA_WIDTH + x;
+    _io_outb(0x3D4, 0x0F);
+    _io_outb(0x3D5, (uint8_t) (pos & 0xFF));
+    _io_outb(0x3D4, 0x0E);
+    _io_outb(0x3D5, (uint8_t) ((pos >> 8) & 0xFF));
 }

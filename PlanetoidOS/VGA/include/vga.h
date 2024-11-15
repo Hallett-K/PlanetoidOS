@@ -39,5 +39,6 @@ void vga_putchar(char c);
 void vga_write(const char* data, size_t size);
 void vga_writestring(const char* data);
 void vga_writeint(uint64_t n); // TEMP
+void vga_cursor_set(uint16_t x, uint16_t y);
 
 #endif // _PL_VGA_H
