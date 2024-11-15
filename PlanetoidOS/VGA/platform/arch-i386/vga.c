@@ -11,6 +11,12 @@ static size_t vga_column;
 static uint8_t vga_color;
 static uint16_t* vga_buffer;
 
+static const uint16_t VGA_COMMAND_PORT = 0x3D4;
+static const uint16_t VGA_DATA_PORT = 0x3D5;
+
+static const uint8_t VGA_CMD_CURSOR_HIGH_BYTE = 0x0E;
+static const uint8_t VGA_CMD_CURSOR_LOW_BYTE = 0x0F;
+
 void vga_init(void)
 {
     vga_row = 0;
@@ -98,8 +104,8 @@ void vga_writeint(uint64_t n)
 void vga_cursor_set(uint16_t x, uint16_t y)
 {
     uint16_t pos = y * VGA_WIDTH + x;
-    _io_outb(0x3D4, 0x0F);
-    _io_outb(0x3D5, (uint8_t) (pos & 0xFF));
-    _io_outb(0x3D4, 0x0E);
-    _io_outb(0x3D5, (uint8_t) ((pos >> 8) & 0xFF));
+    _io_outb(VGA_COMMAND_PORT, VGA_CMD_CURSOR_LOW_BYTE);
+    _io_outb(VGA_DATA_PORT, (uint8_t) (pos & 0xFF));
+    _io_outb(VGA_COMMAND_PORT, VGA_CMD_CURSOR_HIGH_BYTE);
+    _io_outb(VGA_DATA_PORT, (uint8_t) ((pos >> 8) & 0xFF));
 }
