@@ -28,6 +28,7 @@ uint8_t serial_get_fifo_empty(uint16_t port);
 void serial_write_char(uint16_t port, char c);
 void serial_write_string(uint16_t port, const char* str);
 void serial_write_int(uint16_t port, int32_t n); // TEMP
+void serial_write_ulong(uint16_t port, uint64_t n); // TEMP
 
 void serial_init(void);
 

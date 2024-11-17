@@ -68,6 +68,20 @@ void serial_write_int(uint16_t port, int32_t n)
     serial_write_string(port, pos);
 }
 
+void serial_write_ulong(uint16_t port, uint64_t n)
+{
+    char buffer[24];
+    char* pos = buffer + sizeof(buffer) - 1;
+    *pos = '\0';
+
+    do {
+        *--pos = '0' + n % 10;
+        n /= 10;
+    } while (n > 0);
+
+    serial_write_string(port, pos);
+}
+
 void serial_init(void)
 {
     serial_set_bitrate(SERIAL_PORT_COM1, 1);
