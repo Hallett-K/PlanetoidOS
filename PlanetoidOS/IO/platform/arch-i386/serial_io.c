@@ -1,6 +1,3 @@
-#ifndef _PL_SERIAL_IO_C
-#define _PL_SERIAL_IO_C
-
 #include <io.h>
 
 void serial_set_bitrate(uint16_t port, uint16_t divisor)
@@ -71,4 +68,10 @@ void serial_write_int(uint16_t port, int32_t n)
     serial_write_string(port, pos);
 }
 
-#endif // _PL_SERIAL_IO_C
+void serial_init(void)
+{
+    serial_set_bitrate(SERIAL_PORT_COM1, 1);
+    serial_line_config(SERIAL_PORT_COM1, 0x03);
+    serial_fifo_config(SERIAL_PORT_COM1, 0xC7);
+    serial_modem_config(SERIAL_PORT_COM1, 0x03);
+}

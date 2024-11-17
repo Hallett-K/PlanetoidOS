@@ -22,7 +22,7 @@ GDT_ASM_OBJ="$DEV_MEMORY_DIR/gdt-asm.o"
 CRTBEGIN=$(i686-elf-gcc -print-file-name=crtbegin.o)
 CRTEND=$(i686-elf-gcc -print-file-name=crtend.o)
 
-rm -f $BOOT_OBJ $KERNEL_OBJ PlanetoidOS.bin PlanetoidOS.iso
+rm -f $BOOT_OBJ $KERNEL_OBJ $VGA_OBJ $IO_OBJ $SERIAL_OBJ $GDT_OBJ $GDT_ASM_OBJ PlanetoidOS.bin PlanetoidOS.iso
 
 i686-elf-as -g "$DEV_BOOT_DIR/boot.s" -o "$BOOT_OBJ"
 i686-elf-as -g "$DEV_IO_DIR/io.s" -o "$IO_OBJ"
