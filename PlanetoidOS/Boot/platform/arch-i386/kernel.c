@@ -4,6 +4,7 @@
 
 #include <vga.h>
 #include <io.h>
+#include <gdt.h>
 
 void init_serial(void)
 {
@@ -16,6 +17,9 @@ void init_serial(void)
 void kernel_main(void) 
 {
     init_serial();
+
+    serial_write_string(SERIAL_PORT_COM1, "Initializing GDT\n");
+    gdt_init();
 
     vga_init();
     vga_writestring("PlanetoidOS v0.0");
