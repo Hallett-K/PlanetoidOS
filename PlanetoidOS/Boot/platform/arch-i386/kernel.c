@@ -5,6 +5,7 @@
 #include <vga.h>
 #include <io.h>
 #include <gdt.h>
+#include <idt.h>
 
 struct multiboot_info_t
 {
@@ -78,10 +79,15 @@ void kernel_main(void)
     serial_write_string(SERIAL_PORT_COM1, "Initializing GDT\n");
     gdt_init();
 
+    serial_write_string(SERIAL_PORT_COM1, "Initializing IDT\n");
+    idt_init();
+
     vga_init();
     vga_writestring("PlanetoidOS v0.0\n");
 
     serial_write_string(SERIAL_PORT_COM1, "PlanetoidOS v0.0\n");
+
+    //serial_write_int(SERIAL_PORT_COM1, 1 / 0); // Division by zero - Our ISR will catch this!
 
     for (uint32_t i = 0; i < multiboot_info->mmap_length; i += sizeof(struct multiboot_memory_map_entry_t))
     {

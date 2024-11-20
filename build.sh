@@ -18,6 +18,9 @@ IO_OBJ="$DEV_IO_DIR/io.o"
 SERIAL_OBJ="$DEV_IO_DIR/serial_io.o"
 GDT_OBJ="$DEV_MEMORY_DIR/gdt.o"
 GDT_ASM_OBJ="$DEV_MEMORY_DIR/gdt-asm.o"
+IDT_OBJ="$DEV_MEMORY_DIR/idt.o"
+IDT_ASM_OBJ="$DEV_MEMORY_DIR/idt-asm.o"
+MEM_UTIL_OBJ="$DEV_MEMORY_DIR/util.o"
 
 CRTBEGIN=$(i686-elf-gcc -print-file-name=crtbegin.o)
 CRTEND=$(i686-elf-gcc -print-file-name=crtend.o)
@@ -27,12 +30,14 @@ rm -f $BOOT_OBJ $KERNEL_OBJ $VGA_OBJ $IO_OBJ $SERIAL_OBJ $GDT_OBJ $GDT_ASM_OBJ P
 i686-elf-as -g "$DEV_BOOT_DIR/boot.s" -o "$BOOT_OBJ"
 i686-elf-as -g "$DEV_IO_DIR/io.s" -o "$IO_OBJ"
 i686-elf-as -g "$DEV_MEMORY_DIR/gdt.s" -o "$GDT_ASM_OBJ"
-
+i686-elf-as -g "$DEV_MEMORY_DIR/idt.s" -o "$IDT_ASM_OBJ"
 i686-elf-gcc -g -c "$DEV_IO_DIR/serial_io.c" -o "$SERIAL_OBJ" -I"$INCLUDE_IO_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
 i686-elf-gcc -g -c "$DEV_VGA_DIR/vga.c" -o "$VGA_OBJ" -I"$INCLUDE_VGA_DIR" -I"$INCLUDE_IO_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
 i686-elf-gcc -g -c "$DEV_MEMORY_DIR/gdt.c" -o "$GDT_OBJ" -I"$INCLUDE_MEMORY_DIR" -I"$INCLUDE_IO_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
+i686-elf-gcc -g -c "$DEV_MEMORY_DIR/idt.c" -o "$IDT_OBJ" -I"$INCLUDE_MEMORY_DIR" -I"$INCLUDE_IO_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
+i686-elf-gcc -g -c "$DEV_MEMORY_DIR/util.c" -o "$MEM_UTIL_OBJ" -I"$INCLUDE_MEMORY_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
 i686-elf-gcc -g -c "$DEV_BOOT_DIR/kernel.c" -o "$KERNEL_OBJ" -I"$INCLUDE_VGA_DIR" -I"$INCLUDE_IO_DIR" -I"$INCLUDE_MEMORY_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
-i686-elf-gcc -g -T "$DEV_BOOT_DIR/linker.ld" -o "PlanetoidOS.bin" -ffreestanding -O0 -nostdlib "$BOOT_OBJ" "$KERNEL_OBJ" "$VGA_OBJ" "$IO_OBJ" "$SERIAL_OBJ" "$GDT_OBJ" "$GDT_ASM_OBJ" -lgcc
+i686-elf-gcc -g -T "$DEV_BOOT_DIR/linker.ld" -o "PlanetoidOS.bin" -ffreestanding -O0 -nostdlib "$BOOT_OBJ" "$KERNEL_OBJ" "$VGA_OBJ" "$IO_OBJ" "$SERIAL_OBJ" "$GDT_OBJ" "$GDT_ASM_OBJ" "$IDT_OBJ" "$IDT_ASM_OBJ" "$MEM_UTIL_OBJ" -lgcc
 
 if grub-file --is-x86-multiboot PlanetoidOS.bin; then
     echo "Multiboot confirmed"

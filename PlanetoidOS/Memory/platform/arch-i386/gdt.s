@@ -1,5 +1,5 @@
 .global gdt_load
-
+.global tss_load
 gdt_load:
     cli
     mov 4(%esp), %eax
@@ -21,3 +21,9 @@ gdt_load:
 gdt_ret:
     sti
     ret
+
+tss_load:
+    mov $0x2B, %ax
+    ltr %ax
+    ret
+    
