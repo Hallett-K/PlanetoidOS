@@ -6,6 +6,7 @@
 #include <io.h>
 #include <gdt.h>
 #include <idt.h>
+#include <timer.h>
 
 struct multiboot_info_t
 {
@@ -139,4 +140,8 @@ void kernel_main(void)
         serial_write_string(SERIAL_PORT_COM1, "\n");
         vga_writestring("\n");
     }
+
+    init_timer();
+
+    for (;;);
 }

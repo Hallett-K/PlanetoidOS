@@ -62,7 +62,6 @@ extern struct tss_entry tss_entry_;
 void gdt_init(void);
 void gdt_set_entry(uint8_t index, uint32_t limit, uint32_t base, uint8_t access, uint8_t granularity);
 void write_tss(uint8_t index, uint16_t ss0, uint32_t esp0);
-void* memset(void* ptr, char val, uint32_t num); // TEMP
 
 extern void gdt_load(struct gdt_descriptor* gdt_ptr);
 extern void tss_load(void);
