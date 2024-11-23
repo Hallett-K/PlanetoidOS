@@ -143,5 +143,8 @@ void kernel_main(void)
 
     init_timer();
 
+    sleep(1000);
+    vga_writestring("Done Sleeping!\n");
+
     for (;;);
 }
