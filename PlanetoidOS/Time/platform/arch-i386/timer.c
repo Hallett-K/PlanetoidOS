@@ -12,12 +12,12 @@ const uint32_t frequency = 100;
 #define PIT_COMMAND 0x43
 #define PIT_DATA 0x40
 
-void init_timer(void)
+void timer_init(void)
 {
     ticks = 0;
     ticks_since_boot = 0;
 
-    irq_set_handler(0, onIrq0);
+    irq_set_handler(0, on_irq0);
 
     uint32_t divisor = 1193180 / frequency;
 
@@ -27,8 +27,9 @@ void init_timer(void)
 
 }
 
-void onIrq0(struct interrupt_frame* frame)
+void on_irq0(struct interrupt_frame* frame)
 {
+    (void)frame; // Unused but hides warning
     ticks++;
     ticks_since_boot++;
 }

@@ -23,6 +23,7 @@ IDT_OBJ="$DEV_MEMORY_DIR/idt.o"
 IDT_ASM_OBJ="$DEV_MEMORY_DIR/idt-asm.o"
 MEM_UTIL_OBJ="$DEV_MEMORY_DIR/util.o"
 TIMER_OBJ="$DEV_TIME_DIR/timer.o"
+KEYBOARD_OBJ="$DEV_IO_DIR/keyboard.o"
 CRTBEGIN=$(i686-elf-gcc -print-file-name=crtbegin.o)
 CRTEND=$(i686-elf-gcc -print-file-name=crtend.o)
 
@@ -38,8 +39,9 @@ i686-elf-gcc -g -c "$DEV_MEMORY_DIR/gdt.c" -o "$GDT_OBJ" -I"$INCLUDE_MEMORY_DIR"
 i686-elf-gcc -g -c "$DEV_MEMORY_DIR/idt.c" -o "$IDT_OBJ" -I"$INCLUDE_MEMORY_DIR" -I"$INCLUDE_IO_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
 i686-elf-gcc -g -c "$DEV_MEMORY_DIR/util.c" -o "$MEM_UTIL_OBJ" -I"$INCLUDE_MEMORY_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
 i686-elf-gcc -g -c "$DEV_TIME_DIR/timer.c" -o "$TIMER_OBJ" -I"$INCLUDE_TIME_DIR" -I"$INCLUDE_MEMORY_DIR" -I"$INCLUDE_IO_DIR" -I"$INCLUDE_VGA_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
+i686-elf-gcc -g -c "$DEV_IO_DIR/keyboard.c" -o "$KEYBOARD_OBJ" -I"$INCLUDE_IO_DIR" -I"$INCLUDE_MEMORY_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
 i686-elf-gcc -g -c "$DEV_BOOT_DIR/kernel.c" -o "$KERNEL_OBJ" -I"$INCLUDE_VGA_DIR" -I"$INCLUDE_IO_DIR" -I"$INCLUDE_MEMORY_DIR" -I"$INCLUDE_TIME_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
-i686-elf-gcc -g -T "$DEV_BOOT_DIR/linker.ld" -o "PlanetoidOS.bin" -ffreestanding -O0 -nostdlib "$BOOT_OBJ" "$KERNEL_OBJ" "$VGA_OBJ" "$IO_OBJ" "$SERIAL_OBJ" "$GDT_OBJ" "$GDT_ASM_OBJ" "$IDT_OBJ" "$IDT_ASM_OBJ" "$MEM_UTIL_OBJ" "$TIMER_OBJ" -lgcc
+i686-elf-gcc -g -T "$DEV_BOOT_DIR/linker.ld" -o "PlanetoidOS.bin" -ffreestanding -O0 -nostdlib "$BOOT_OBJ" "$KERNEL_OBJ" "$VGA_OBJ" "$IO_OBJ" "$SERIAL_OBJ" "$GDT_OBJ" "$GDT_ASM_OBJ" "$IDT_OBJ" "$IDT_ASM_OBJ" "$MEM_UTIL_OBJ" "$TIMER_OBJ" "$KEYBOARD_OBJ" -lgcc
 
 if grub-file --is-x86-multiboot PlanetoidOS.bin; then
     echo "Multiboot confirmed"

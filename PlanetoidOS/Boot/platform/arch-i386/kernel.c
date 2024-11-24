@@ -7,6 +7,7 @@
 #include <gdt.h>
 #include <idt.h>
 #include <timer.h>
+#include <keyboard.h>
 
 struct multiboot_info_t
 {
@@ -83,6 +84,9 @@ void kernel_main(void)
     serial_write_string(SERIAL_PORT_COM1, "Initializing IDT\n");
     idt_init();
 
+    serial_write_string(SERIAL_PORT_COM1, "Initializing keyboard\n");
+    keyboard_init();
+
     vga_init();
     vga_writestring("PlanetoidOS v0.0\n");
 
@@ -141,7 +145,7 @@ void kernel_main(void)
         vga_writestring("\n");
     }
 
-    init_timer();
+    timer_init();
 
     sleep(1000);
     vga_writestring("Done Sleeping!\n");
