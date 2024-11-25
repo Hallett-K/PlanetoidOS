@@ -17,10 +17,25 @@ stack_bottom:
 .skip 16384 # 16 KiB
 stack_top:
 
-.section .text
+.section .boot
 .global _start
 .type _start, @function
 _start:
+	mov $(init_page_dir - 0xC0000000), %ecx
+	mov %ecx, %cr3
+
+	mov %cr4, %ecx
+	or $0x00000010, %ecx
+	mov %ecx, %cr4
+
+	mov %cr0, %ecx
+	or $0x80000000, %ecx
+	mov %ecx, %cr0
+
+	jmp higher_half
+
+.section .text 
+higher_half:
 	mov $stack_top, %esp
 
 	push %eax
@@ -33,4 +48,15 @@ _start:
 1:	hlt
 	jmp 1b
 
-.size _start, . - _start
+.section .data 
+.align 4096
+.global init_page_dir 
+init_page_dir:
+	.long 0b10000011 
+	.skip 3068 
+
+	.long (0 << 22) | 0b10000011
+	.long (1 << 22) | 0b10000011
+	.long (2 << 22) | 0b10000011
+	.long (3 << 22) | 0b10000011
+	.skip 1008 
