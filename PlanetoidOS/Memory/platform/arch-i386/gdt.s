@@ -19,7 +19,6 @@ gdt_load:
     jmp $0x08, $gdt_ret
     
 gdt_ret:
-    sti
     ret
 
 tss_load:
