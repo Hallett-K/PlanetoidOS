@@ -5,7 +5,7 @@
 .set MAGIC,    0x1BADB002       /* 'magic number' lets bootloader find the header */
 .set CHECKSUM, -(MAGIC + FLAGS) /* checksum of above, to prove we are multiboot */
 
-.section .multiboot
+.section .multiboot, "aw"
 .align 4
 .long MAGIC
 .long FLAGS
@@ -17,7 +17,7 @@ stack_bottom:
 .skip 16384 # 16 KiB
 stack_top:
 
-.section .boot
+.section .boot, "a"
 .global _start
 .type _start, @function
 _start:
