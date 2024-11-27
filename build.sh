@@ -25,10 +25,8 @@ MEM_UTIL_OBJ="$DEV_MEMORY_DIR/util.o"
 TIMER_OBJ="$DEV_TIME_DIR/timer.o"
 KEYBOARD_OBJ="$DEV_IO_DIR/keyboard.o"
 MEMORY_OBJ="$DEV_MEMORY_DIR/mem.o"
-CRTBEGIN=$(i686-elf-gcc -print-file-name=crtbegin.o)
-CRTEND=$(i686-elf-gcc -print-file-name=crtend.o)
 
-rm -f $BOOT_OBJ $KERNEL_OBJ $VGA_OBJ $IO_OBJ $SERIAL_OBJ $GDT_OBJ $GDT_ASM_OBJ $IDT_OBJ $IDT_ASM_OBJ $MEM_UTIL_OBJ $TIMER_OBJ $KEYBOARD_OBJ $MEMORY_OBJ PlanetoidOS.bin PlanetoidOS.iso
+rm -f $BOOT_OBJ $KERNEL_OBJ $VGA_OBJ $IO_OBJ $SERIAL_OBJ $GDT_OBJ $GDT_ASM_OBJ $IDT_OBJ $IDT_ASM_OBJ $MEM_UTIL_OBJ $TIMER_OBJ $KEYBOARD_OBJ $MEMORY_OBJ PlanetoidOS.elf PlanetoidOS.iso
 
 i686-elf-as -g "$DEV_BOOT_DIR/boot.s" -o "$BOOT_OBJ"
 i686-elf-as -g "$DEV_IO_DIR/io.s" -o "$IO_OBJ"
