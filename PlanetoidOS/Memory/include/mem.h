@@ -53,6 +53,9 @@ struct multiboot_memory_map_entry_t
     uint32_t type;
 } __attribute__((packed));
 
+extern uint32_t init_page_dir[1024];
+
+extern void invalidate_page_dir(uint32_t page_dir);
 void memory_init(struct multiboot_info_t *multiboot_info);
 
 #endif // _PL_MEMORY_H

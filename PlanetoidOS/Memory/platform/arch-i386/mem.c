@@ -1,6 +1,25 @@
 #include <mem.h>
 #include <io.h>
 #include <vga.h>
+#include <util.h>
+
+#define KERNEL_START 0xC0000000
+#define PAGE_PRESENT 1 << 0
+#define PAGE_WRITE 1 << 1
+
+static uint32_t pageFrameMin;
+static uint32_t pageFrameMax;
+static uint32_t allocated; 
+
+#define NUM_PAGE_DIRS 256
+#define NUM_PAGE_FRAMES (0x100000000 / 4096 / 8)
+
+
+static uint8_t memBitmap[NUM_PAGE_FRAMES / 8]; // TEMP
+
+static uint32_t pageDirs[NUM_PAGE_DIRS][1024] __attribute__((aligned(4096)));
+static uint8_t pageDirUsed[NUM_PAGE_DIRS];
+
 void memory_init(struct multiboot_info_t *multiboot_info)
 {
     (void)multiboot_info;
@@ -55,4 +74,23 @@ void memory_init(struct multiboot_info_t *multiboot_info)
         serial_write_string(SERIAL_PORT_COM1, "\n");
         vga_writestring("\n");
     }
+
+    uint32_t mod1 = *(uint32_t*)(multiboot_info->mods_addr + 0x04);
+    uint32_t physicalAllocStart = (mod1 & 0xFFF) & ~0xFFF;
+    uint32_t memHigh = multiboot_info->mem_upper * 1024;
+
+    init_page_dir[0] = 0; 
+    invalidate_page_dir(0);
+    
+    init_page_dir[1023] = ((uint32_t)init_page_dir - KERNEL_START) | PAGE_PRESENT | PAGE_WRITE;
+    invalidate_page_dir(0xFFFFF000);
+
+    // Physical memory manager initialization 
+    pageFrameMin = (physicalAllocStart + 4095) / 4096;
+    pageFrameMax = (memHigh + 4095) / 4096;
+    allocated = 0;
+
+    memset(memBitmap, 0, sizeof(memBitmap));
+    memset(pageDirs, 0, 4096 * NUM_PAGE_DIRS);
+    memset(pageDirUsed, 0, NUM_PAGE_DIRS);
 }
