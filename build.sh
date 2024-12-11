@@ -27,7 +27,9 @@ KEYBOARD_OBJ="$DEV_IO_DIR/keyboard.o"
 MEMORY_OBJ="$DEV_MEMORY_DIR/mem.o"
 MEMORY_ASM_OBJ="$DEV_MEMORY_DIR/mem-asm.o"
 
-rm -f $BOOT_OBJ $KERNEL_OBJ $VGA_OBJ $IO_OBJ $SERIAL_OBJ $GDT_OBJ $GDT_ASM_OBJ $IDT_OBJ $IDT_ASM_OBJ $MEM_UTIL_OBJ $TIMER_OBJ $KEYBOARD_OBJ $MEMORY_OBJ $MEMORY_ASM_OBJ PlanetoidOS.elf PlanetoidOS.iso
+rm -f $BOOT_OBJ $KERNEL_OBJ $VGA_OBJ $IO_OBJ $SERIAL_OBJ $GDT_OBJ $GDT_ASM_OBJ $IDT_OBJ $IDT_ASM_OBJ $MEM_UTIL_OBJ $TIMER_OBJ $KEYBOARD_OBJ $MEMORY_OBJ $MEMORY_ASM_OBJ PlanetoidOS.bin
+
+nasm -fbin -o "$DEV_BOOT_DIR/bootloader.bin" "$DEV_BOOT_DIR/bootloader.s"
 
 i686-elf-as -g "$DEV_BOOT_DIR/boot.s" -o "$BOOT_OBJ"
 i686-elf-as -g "$DEV_IO_DIR/io.s" -o "$IO_OBJ"
@@ -43,19 +45,9 @@ i686-elf-gcc -g -c "$DEV_TIME_DIR/timer.c" -o "$TIMER_OBJ" -I"$INCLUDE_TIME_DIR"
 i686-elf-gcc -g -c "$DEV_IO_DIR/keyboard.c" -o "$KEYBOARD_OBJ" -I"$INCLUDE_IO_DIR" -I"$INCLUDE_MEMORY_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
 i686-elf-gcc -g -c "$DEV_MEMORY_DIR/mem.c" -o "$MEMORY_OBJ" -I"$INCLUDE_MEMORY_DIR" -I"$INCLUDE_IO_DIR" -I"$INCLUDE_VGA_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
 i686-elf-gcc -g -c "$DEV_BOOT_DIR/kernel.c" -o "$KERNEL_OBJ" -I"$INCLUDE_VGA_DIR" -I"$INCLUDE_IO_DIR" -I"$INCLUDE_MEMORY_DIR" -I"$INCLUDE_TIME_DIR" -std=gnu99 -ffreestanding -O0 -Wall -Wextra
-i686-elf-gcc -g -T "$DEV_BOOT_DIR/linker.ld" -o "PlanetoidOS.elf" "$BOOT_OBJ" "$KERNEL_OBJ" "$VGA_OBJ" "$IO_OBJ" "$SERIAL_OBJ" "$GDT_OBJ" "$GDT_ASM_OBJ" "$IDT_OBJ" "$IDT_ASM_OBJ" "$MEM_UTIL_OBJ" "$TIMER_OBJ" "$KEYBOARD_OBJ" "$MEMORY_OBJ" "$MEMORY_ASM_OBJ" -nostdlib -lgcc
+i686-elf-gcc -g -T "$DEV_BOOT_DIR/linker.ld" -o "PlanetoidOS.bin" "$BOOT_OBJ" "$KERNEL_OBJ" "$VGA_OBJ" "$IO_OBJ" "$SERIAL_OBJ" "$GDT_OBJ" "$GDT_ASM_OBJ" "$IDT_OBJ" "$IDT_ASM_OBJ" "$MEM_UTIL_OBJ" "$TIMER_OBJ" "$KEYBOARD_OBJ" "$MEMORY_OBJ" "$MEMORY_ASM_OBJ" -nostdlib -lgcc
 
-if grub-file --is-x86-multiboot PlanetoidOS.elf; then
-    echo "Multiboot confirmed"
-else
-    echo "ERROR: The file is not multiboot"
-    exit 1
-fi
-
-mkdir -p isodir/boot/grub
-cp PlanetoidOS.elf isodir/boot/PlanetoidOS.elf
-cp grub.cfg isodir/boot/grub/grub.cfg
-grub-mkrescue -o PlanetoidOS.iso isodir
+fat_imgen -c -F -f floppy.img -s "$DEV_BOOT_DIR/bootloader.bin" -i PlanetoidOS.bin -n KERNEL.SYS
 
 # Copy to mnt/d/projects/OS - I uncomment this locally as I develop in WSL and test on Windows
 #cp PlanetoidOS.iso /mnt/d/projects/OS
