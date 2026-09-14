@@ -1,8 +1,17 @@
 # ninja log v7
-0	2	1789390348093044261	CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/boot.s.obj	fba71ad56facc8a2
-0	10	1789390361917041520	CMakeFiles/PlanetoidOS.dir/kernel/kernel.cpp.obj	b69093a9973af50c
-10	77	1789390361929041519	kernel	35f91546cab6fee9
-0	3	1789390891540931865	CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/boot.s.obj	fba71ad56facc8a2
-3	82	1789390891544931864	kernel	35f91546cab6fee9
 0	3	1789390960952920492	CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/boot.s.obj	fba71ad56facc8a2
+0	11	1789392171564675305	CMakeFiles/PlanetoidOS.dir/kernel/kernel.cpp.obj	b69093a9973af50c
 3	82	1789390960956920492	kernel	35f91546cab6fee9
+0	18	1789392473172614596	build.ninja	fb3ee22914d2b1b8
+0	18	1789392473172614596	/home/krystal/projects/PlanetoidOS/build/cmake_install.cmake	fb3ee22914d2b1b8
+0	11	1789392198388670083	CMakeFiles/PlanetoidOS.dir/kernel/drivers/uart.c.obj	11d06f45fefbe4db
+0	11	1789392403096628985	CMakeFiles/drivers.dir/kernel/drivers/uart.c.obj	f254fc25f36fda10
+11	18	1789392403108628983	libdrivers.a	e90a205c55281911
+0	17	1789392473172614596	build.ninja	fb3ee22914d2b1b8
+0	17	1789392473172614596	/home/krystal/projects/PlanetoidOS/build/cmake_install.cmake	fb3ee22914d2b1b8
+0	11	1789392473176614594	CMakeFiles/PlanetoidOS.dir/kernel/kernel.cpp.obj	b69093a9973af50c
+1	12	1789392572832594233	CMakeFiles/PlanetoidOS.dir/kernel/kernel.cpp.obj	b69093a9973af50c
+1	12	1789392572832594233	CMakeFiles/PlanetoidOS.dir/kernel/drivers/uart.c.obj	11d06f45fefbe4db
+12	93	1789392572844594229	kernel	3e3c5911c45360b5
+1	74	1789393677064371121	CMakeFiles/PlanetoidOS.dir/kernel/kernel.cpp.obj	b69093a9973af50c
+74	187	1789393677136371107	kernel	3e3c5911c45360b5

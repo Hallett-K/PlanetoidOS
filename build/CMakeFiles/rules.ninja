@@ -22,6 +22,16 @@ rule ASM_COMPILER__PlanetoidOS_unscanned_
 
 
 #############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__PlanetoidOS_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
 # Rule for compiling CXX files.
 
 rule CXX_COMPILER__PlanetoidOS_unscanned_

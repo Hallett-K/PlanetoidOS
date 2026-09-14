@@ -2,7 +2,7 @@ ENTRY(_asm_start)
 
 SECTIONS
 {
-    . = 0x80000;
+    . = 0x40080000;
 
     .text : ALIGN(4096)
     {
