@@ -1,0 +1,4 @@
+# ninja log v7
+0	2	1789390348093044261	CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/boot.s.obj	fba71ad56facc8a2
+0	10	1789390361917041520	CMakeFiles/PlanetoidOS.dir/kernel/kernel.cpp.obj	b69093a9973af50c
+10	77	1789390361929041519	kernel	35f91546cab6fee9

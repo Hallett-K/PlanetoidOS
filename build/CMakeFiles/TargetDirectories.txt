@@ -1,0 +1,3 @@
+/home/krystal/projects/PlanetoidOS/build/CMakeFiles/PlanetoidOS.dir
+/home/krystal/projects/PlanetoidOS/build/CMakeFiles/edit_cache.dir
+/home/krystal/projects/PlanetoidOS/build/CMakeFiles/rebuild_cache.dir
