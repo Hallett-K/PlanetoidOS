@@ -26,5 +26,10 @@ SECTIONS
         *(.bss*)
         *(COMMON)
         __bss_end = .;
+
+        . = ALIGN(16);
+        . += 0x10000;
+        __stack_top = .;
+
     }
 }
