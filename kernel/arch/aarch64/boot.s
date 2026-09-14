@@ -8,6 +8,11 @@ _asm_start:
     ldr x0, =__stack_top
     mov sp, x0
 
+    // Exception table
+    ldr x0, =exception_vector_table
+    msr VBAR_EL1, x0 
+    isb
+
     // Clear BSS
     ldr x0, =__bss_start
     ldr x1, =__bss_end
