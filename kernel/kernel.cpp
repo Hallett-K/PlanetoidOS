@@ -1,3 +1,4 @@
+#include "core/interrupts.hpp"
 #include "core/log.hpp"
 #include "arch/aarch64/exception.hpp"
 #include "arch/aarch64/gic.hpp"
@@ -19,6 +20,7 @@ extern "C" void kernel_main()
     Log::Info("UART Initialised.");
     Log::Error("This is a test error");
 
+    Interrupts::init();
     GIC::init();
     GIC::enable_interrupt(30); // Timer interrupt
     Timer::init(100); // ticks every 1/100th of a second

@@ -1,4 +1,5 @@
 #include "exception.hpp"
+#include "core/interrupts.hpp"
 #include "core/log.hpp"
 #include "gic.hpp"
 #include "timer.hpp"
@@ -185,10 +186,27 @@ extern "C" void irq_exception_handler(exception_context* context)
 
     const uint32_t interrupt_id = GIC::acknowledge_interrupt();
     
-    if (interrupt_id == 30)
-    {
-        Timer::on_interrupt();
-    }
+    Interrupts::dispatch_interrupt(interrupt_id);
 
     GIC::end_interrupt(interrupt_id);
+}
+
+extern "C" void fiq_exception_handler()
+{
+    Log::Error("FIQ Exception");
+
+    while (true)
+    {
+        asm volatile("wfe");
+    }
+}
+
+extern "C" void serror_exception_handler()
+{
+    Log::Error("SError Exception");
+
+    while (true)
+    {
+        asm volatile("wfe");
+    }
 }

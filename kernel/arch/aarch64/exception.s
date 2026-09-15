@@ -151,7 +151,7 @@ exception_irq:
     eret
 
 exception_fiq:
-    b exception_fiq
+    b fiq_exception_handler
 
 exception_serror:
-    b exception_serror
+    b serror_exception_handler
