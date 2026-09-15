@@ -2,6 +2,7 @@
 #include "core/log.hpp"
 #include "arch/aarch64/exception.hpp"
 #include "arch/aarch64/gic.hpp"
+#include "arch/aarch64/mmu.hpp"
 #include "arch/aarch64/timer.hpp"
 
 void enable_interrupts()
@@ -22,6 +23,10 @@ extern "C" void kernel_main()
 
     Interrupts::init();
     GIC::init();
+
+    MMU::init();
+    Log::Info("MMU Enabled!");
+
     GIC::enable_interrupt(30); // Timer interrupt
     Timer::init(100); // ticks every 1/100th of a second
     enable_interrupts();
