@@ -47,6 +47,7 @@ build cmake_object_order_depends_target_PlanetoidOS: phony || .
 build CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/boot.s.obj: ASM_COMPILER__PlanetoidOS_unscanned_ /home/krystal/projects/PlanetoidOS/kernel/arch/aarch64/boot.s || cmake_object_order_depends_target_PlanetoidOS
   DEP_FILE = CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/boot.s.obj.d
   FLAGS = -ffreestanding -Wall -Wextra
+  INCLUDES = -I/home/krystal/projects/PlanetoidOS/kernel
   OBJECT_DIR = CMakeFiles/PlanetoidOS.dir
   OBJECT_FILE_DIR = CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64
   TARGET_SUPPORT_DIR = CMakeFiles/PlanetoidOS.dir
@@ -54,6 +55,15 @@ build CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/boot.s.obj: ASM_COMPILER__P
 build CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/exception.s.obj: ASM_COMPILER__PlanetoidOS_unscanned_ /home/krystal/projects/PlanetoidOS/kernel/arch/aarch64/exception.s || cmake_object_order_depends_target_PlanetoidOS
   DEP_FILE = CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/exception.s.obj.d
   FLAGS = -ffreestanding -Wall -Wextra
+  INCLUDES = -I/home/krystal/projects/PlanetoidOS/kernel
+  OBJECT_DIR = CMakeFiles/PlanetoidOS.dir
+  OBJECT_FILE_DIR = CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64
+  TARGET_SUPPORT_DIR = CMakeFiles/PlanetoidOS.dir
+
+build CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/exception.cpp.obj: CXX_COMPILER__PlanetoidOS_unscanned_ /home/krystal/projects/PlanetoidOS/kernel/arch/aarch64/exception.cpp || cmake_object_order_depends_target_PlanetoidOS
+  DEP_FILE = CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/exception.cpp.obj.d
+  FLAGS = -ffreestanding -fno-builtin -fno-exceptions -fno-rtti -Wall -Wextra
+  INCLUDES = -I/home/krystal/projects/PlanetoidOS/kernel
   OBJECT_DIR = CMakeFiles/PlanetoidOS.dir
   OBJECT_FILE_DIR = CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64
   TARGET_SUPPORT_DIR = CMakeFiles/PlanetoidOS.dir
@@ -61,6 +71,7 @@ build CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/exception.s.obj: ASM_COMPIL
 build CMakeFiles/PlanetoidOS.dir/kernel/kernel.cpp.obj: CXX_COMPILER__PlanetoidOS_unscanned_ /home/krystal/projects/PlanetoidOS/kernel/kernel.cpp || cmake_object_order_depends_target_PlanetoidOS
   DEP_FILE = CMakeFiles/PlanetoidOS.dir/kernel/kernel.cpp.obj.d
   FLAGS = -ffreestanding -fno-builtin -fno-exceptions -fno-rtti -Wall -Wextra
+  INCLUDES = -I/home/krystal/projects/PlanetoidOS/kernel
   OBJECT_DIR = CMakeFiles/PlanetoidOS.dir
   OBJECT_FILE_DIR = CMakeFiles/PlanetoidOS.dir/kernel
   TARGET_SUPPORT_DIR = CMakeFiles/PlanetoidOS.dir
@@ -68,6 +79,7 @@ build CMakeFiles/PlanetoidOS.dir/kernel/kernel.cpp.obj: CXX_COMPILER__PlanetoidO
 build CMakeFiles/PlanetoidOS.dir/kernel/drivers/uart.c.obj: C_COMPILER__PlanetoidOS_unscanned_ /home/krystal/projects/PlanetoidOS/kernel/drivers/uart.c || cmake_object_order_depends_target_PlanetoidOS
   DEP_FILE = CMakeFiles/PlanetoidOS.dir/kernel/drivers/uart.c.obj.d
   FLAGS = -ffreestanding -fno-builtin -Wall -Wextra
+  INCLUDES = -I/home/krystal/projects/PlanetoidOS/kernel
   OBJECT_DIR = CMakeFiles/PlanetoidOS.dir
   OBJECT_FILE_DIR = CMakeFiles/PlanetoidOS.dir/kernel/drivers
   TARGET_SUPPORT_DIR = CMakeFiles/PlanetoidOS.dir
@@ -75,6 +87,7 @@ build CMakeFiles/PlanetoidOS.dir/kernel/drivers/uart.c.obj: C_COMPILER__Planetoi
 build CMakeFiles/PlanetoidOS.dir/kernel/core/log.cpp.obj: CXX_COMPILER__PlanetoidOS_unscanned_ /home/krystal/projects/PlanetoidOS/kernel/core/log.cpp || cmake_object_order_depends_target_PlanetoidOS
   DEP_FILE = CMakeFiles/PlanetoidOS.dir/kernel/core/log.cpp.obj.d
   FLAGS = -ffreestanding -fno-builtin -fno-exceptions -fno-rtti -Wall -Wextra
+  INCLUDES = -I/home/krystal/projects/PlanetoidOS/kernel
   OBJECT_DIR = CMakeFiles/PlanetoidOS.dir
   OBJECT_FILE_DIR = CMakeFiles/PlanetoidOS.dir/kernel/core
   TARGET_SUPPORT_DIR = CMakeFiles/PlanetoidOS.dir
@@ -87,7 +100,7 @@ build CMakeFiles/PlanetoidOS.dir/kernel/core/log.cpp.obj: CXX_COMPILER__Planetoi
 #############################################
 # Link the executable kernel
 
-build kernel: CXX_EXECUTABLE_LINKER__PlanetoidOS_ CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/boot.s.obj CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/exception.s.obj CMakeFiles/PlanetoidOS.dir/kernel/kernel.cpp.obj CMakeFiles/PlanetoidOS.dir/kernel/drivers/uart.c.obj CMakeFiles/PlanetoidOS.dir/kernel/core/log.cpp.obj
+build kernel: CXX_EXECUTABLE_LINKER__PlanetoidOS_ CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/boot.s.obj CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/exception.s.obj CMakeFiles/PlanetoidOS.dir/kernel/arch/aarch64/exception.cpp.obj CMakeFiles/PlanetoidOS.dir/kernel/kernel.cpp.obj CMakeFiles/PlanetoidOS.dir/kernel/drivers/uart.c.obj CMakeFiles/PlanetoidOS.dir/kernel/core/log.cpp.obj
   FLAGS = -ffreestanding -fno-builtin -fno-exceptions -fno-rtti
   LINK_FLAGS = -T/home/krystal/projects/PlanetoidOS/linker/kernel.ld -nostdlib -nodefaultlibs -nostartfiles
   OBJECT_DIR = CMakeFiles/PlanetoidOS.dir

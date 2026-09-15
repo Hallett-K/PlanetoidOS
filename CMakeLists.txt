@@ -2,9 +2,10 @@ cmake_minimum_required(VERSION 3.25)
 
 project(PlanetoidOS LANGUAGES C CXX ASM)
 
-add_executable(PlanetoidOS kernel/arch/aarch64/boot.s kernel/arch/aarch64/exception.s kernel/kernel.cpp kernel/drivers/uart.c kernel/core/log.cpp)
+add_executable(PlanetoidOS kernel/arch/aarch64/boot.s kernel/arch/aarch64/exception.s kernel/arch/aarch64/exception.cpp kernel/kernel.cpp kernel/drivers/uart.c kernel/core/log.cpp)
 
 target_compile_options(PlanetoidOS PRIVATE -Wall -Wextra)
 target_link_options(PlanetoidOS PRIVATE -T${CMAKE_SOURCE_DIR}/linker/kernel.ld -nostdlib -nodefaultlibs -nostartfiles)
+target_include_directories(PlanetoidOS PRIVATE kernel)
 
 set_target_properties(PlanetoidOS PROPERTIES OUTPUT_NAME "kernel")

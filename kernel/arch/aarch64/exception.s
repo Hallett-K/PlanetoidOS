@@ -85,7 +85,7 @@ exception_sync:
     str x0, [sp, #(34 * 8)]
 
     mov x0, sp
-    b exception_handler
+    b sync_exception_handler
     b .
 
 exception_irq:
