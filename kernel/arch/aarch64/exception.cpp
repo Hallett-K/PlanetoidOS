@@ -1,6 +1,7 @@
 #include "exception.hpp"
-
 #include "core/log.hpp"
+#include "gic.hpp"
+#include "timer.hpp"
 
 namespace SyncExceptionErrors
 {
@@ -11,11 +12,6 @@ namespace SyncExceptionErrors
     const uint64_t ERR_ABORT_DATA_LOWER = 0x24;
     const uint64_t ERR_ABORT_DATA_CURRENT = 0x25;
 };
-
-namespace InstructionAbortFaults
-{
-    const 
-}
 
 namespace DataAbortFaults
 {
@@ -181,4 +177,18 @@ extern "C" void sync_exception_handler(exception_context* context)
     {
         asm volatile("wfe");
     }
+}
+
+extern "C" void irq_exception_handler(exception_context* context)
+{
+    (void)context;
+
+    const uint32_t interrupt_id = GIC::acknowledge_interrupt();
+    
+    if (interrupt_id == 30)
+    {
+        Timer::on_interrupt();
+    }
+
+    GIC::end_interrupt(interrupt_id);
 }

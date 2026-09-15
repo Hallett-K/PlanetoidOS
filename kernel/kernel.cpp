@@ -1,5 +1,17 @@
 #include "core/log.hpp"
 #include "arch/aarch64/exception.hpp"
+#include "arch/aarch64/gic.hpp"
+#include "arch/aarch64/timer.hpp"
+
+void enable_interrupts()
+{
+    asm volatile("msr daifclr, #2"
+        : 
+        :
+        : "memory");
+
+    asm volatile("isb");
+}
 
 extern "C" void kernel_main()
 {
@@ -7,11 +19,14 @@ extern "C" void kernel_main()
     Log::Info("UART Initialised.");
     Log::Error("This is a test error");
 
-    //asm volatile(".inst 0x00000000");
-    volatile uint64_t* invalid_addr = (uint64_t*)0x50000000ULL;
-    *invalid_addr = 0;
+    GIC::init();
+    GIC::enable_interrupt(30); // Timer interrupt
+    Timer::init(100); // ticks every 1/100th of a second
+    enable_interrupts();
 
-    Log::Error("This error should not be hit!");
+    Log::Info("Pausing for one second!");
+    Timer::delay(100);
+    Log::Info("Second passed!");
 
     while (true)
     {
