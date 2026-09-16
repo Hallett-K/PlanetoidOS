@@ -83,6 +83,15 @@ uint64_t make_normal_page_descriptor(uint64_t address, uint64_t permissions)
     | permissions;
 }
 
+uint64_t make_device_page_descriptor(uint64_t address, uint64_t permissions)
+{
+    return (address & ADDRESS_MASK)
+    | PAGE_DESCRIPTOR
+    | MemoryBlockAttributes::ATTR_DEVICE_MEMORY
+    | MemoryBlockAttributes::ATTR_ACCESS
+    | permissions;
+}
+
 uint64_t get_level1_index(uint64_t virtual_address)
 {
     return (virtual_address >> 30) & 0x1FF;
@@ -291,7 +300,7 @@ MMU::PageTable MMU::allocate_page_table()
     };
 }
 
-bool MMU::map_page(uint64_t virtual_address, uint64_t physical_address, uint64_t permissions)
+bool MMU::map_page(uint64_t virtual_address, uint64_t physical_address, MMU::EMemoryType memory_type, uint64_t permissions)
 {
     if ((virtual_address & 0xFFF) != 0 || (physical_address & 0xFFF) != 0)
     {
@@ -311,8 +320,75 @@ bool MMU::map_page(uint64_t virtual_address, uint64_t physical_address, uint64_t
     }
 
     const uint64_t level3_index = get_level3_index(virtual_address);
+    if (level3_table[level3_index] != 0)
+    {
+        return false;
+    }
 
-    level3_table[level3_index] = make_normal_page_descriptor(physical_address, permissions);
+    uint64_t descriptor;
+    if (memory_type == EMemoryType::Normal)
+    {
+        descriptor = make_normal_page_descriptor(physical_address, permissions);
+    }
+    else
+    {
+        descriptor = make_device_page_descriptor(physical_address, permissions);
+    }
+
+    level3_table[level3_index] = descriptor;
+
+    data_barrier();
+    invalidate_tlb(virtual_address);
+    data_barrier();
+    instruction_barrier();
+
+    return true;
+}
+
+bool MMU::unmap_page(uint64_t virtual_address)
+{
+    if ((virtual_address & 0xFFF) != 0)
+    {
+        return false;
+    }
+
+    const uint64_t level1_index = get_level1_index(virtual_address);
+    const uint64_t level1_entry = level1_table[level1_index];
+
+    if (level1_entry == 0)
+    {
+        return false;
+    }
+
+    if ((level1_entry & 0b11) != TABLE_DESCRIPTOR)
+    {
+        return false;
+    }
+
+    uint64_t* level2_table = (uint64_t*)(level1_entry & ADDRESS_MASK);
+
+    const uint64_t level2_index = get_level2_index(virtual_address);
+    const uint64_t level2_entry = level2_table[level2_index];
+
+    if (level2_entry == 0)
+    {
+        return false;
+    }
+
+    if ((level2_entry & 0b11) != TABLE_DESCRIPTOR)
+    {
+        return false;
+    }
+
+    uint64_t* level3_table = (uint64_t*)(level2_entry & ADDRESS_MASK);
+    
+    const uint64_t level3_index = get_level3_index(virtual_address);
+    if (level3_table[level3_index] == 0)
+    {
+        return false;
+    }
+
+    level3_table[level3_index] = 0;
 
     data_barrier();
     invalidate_tlb(virtual_address);
