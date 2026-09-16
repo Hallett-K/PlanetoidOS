@@ -15,6 +15,12 @@ void enable_interrupts()
     asm volatile("isb");
 }
 
+extern "C" __attribute__((section(".mmu_test")))
+void mmu_execute_test()
+{
+    Log::Error("Executing in PXN memory!");
+}
+
 extern "C" void kernel_main()
 {
     Log::Info("PlanetoidOS");
@@ -30,6 +36,8 @@ extern "C" void kernel_main()
     GIC::enable_interrupt(30); // Timer interrupt
     Timer::init(100); // ticks every 1/100th of a second
     enable_interrupts();
+
+    mmu_execute_test();
 
     Log::Info("Pausing for one second!");
     Timer::delay(100);

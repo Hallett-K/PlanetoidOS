@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/krystal/projects/PlanetoidOS/kernel/arch/aarch64/boot.s
+
+/home/krystal/projects/PlanetoidOS/kernel/arch/aarch64/exception.s
+

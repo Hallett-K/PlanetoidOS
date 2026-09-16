@@ -30,6 +30,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -63,7 +64,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     searched_directories:
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/uname"
       - "/usr/local/sbin/uname"
@@ -82,6 +85,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -120,10 +124,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "message-v1"
     backtrace:
@@ -135,11 +141,11 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "/usr/share/cmake-4.2/Modules/CMakeNinjaFindMake.cmake:5 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeUnixFindMake.cmake:5 (find_program)"
       - "CMakeLists.txt:3 (project)"
     mode: "program"
     variable: "CMAKE_MAKE_PROGRAM"
-    description: "Program used to build from build.ninja files."
+    description: "Path to a program."
     settings:
       SearchFramework: "NEVER"
       SearchAppBundle: "NEVER"
@@ -149,9 +155,9 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "ninja-build"
-      - "ninja"
-      - "samu"
+      - "gmake"
+      - "make"
+      - "smake"
     candidate_directories:
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/"
       - "/usr/local/sbin/"
@@ -163,6 +169,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -196,22 +203,15 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     searched_directories:
-      - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/ninja-build"
-      - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/ninja"
-      - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/samu"
-      - "/usr/local/sbin/ninja-build"
-      - "/usr/local/sbin/ninja"
-      - "/usr/local/sbin/samu"
-      - "/usr/local/bin/ninja-build"
-      - "/usr/local/bin/ninja"
-      - "/usr/local/bin/samu"
-      - "/usr/sbin/ninja-build"
-      - "/usr/sbin/ninja"
-      - "/usr/sbin/samu"
-      - "/usr/bin/ninja-build"
-    found: "/usr/bin/ninja"
+      - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/gmake"
+      - "/usr/local/sbin/gmake"
+      - "/usr/local/bin/gmake"
+      - "/usr/sbin/gmake"
+    found: "/usr/bin/gmake"
     search_context:
       ENV{PATH}:
         - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin"
@@ -224,6 +224,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -262,10 +263,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -296,6 +299,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -329,7 +333,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc"
     search_context:
       ENV{PATH}:
@@ -343,6 +349,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -381,10 +388,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -422,6 +431,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -460,10 +470,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "message-v1"
     backtrace:
@@ -531,6 +543,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -569,10 +582,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "message-v1"
     backtrace:
@@ -626,6 +641,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -659,7 +675,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ar"
     search_context:
       ENV{PATH}:
@@ -673,6 +691,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -711,10 +730,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -746,6 +767,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -779,7 +801,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ranlib"
     search_context:
       ENV{PATH}:
@@ -793,6 +817,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -831,10 +856,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -866,6 +893,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -899,7 +927,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-strip"
     search_context:
       ENV{PATH}:
@@ -913,6 +943,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -951,10 +982,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -986,6 +1019,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1019,7 +1053,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ld"
     search_context:
       ENV{PATH}:
@@ -1033,6 +1069,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1071,10 +1108,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1106,6 +1145,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1139,7 +1179,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-nm"
     search_context:
       ENV{PATH}:
@@ -1153,6 +1195,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1191,10 +1234,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1226,6 +1271,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1259,7 +1305,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-objdump"
     search_context:
       ENV{PATH}:
@@ -1273,6 +1321,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1311,10 +1360,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1346,6 +1397,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1379,7 +1431,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-objcopy"
     search_context:
       ENV{PATH}:
@@ -1393,6 +1447,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1431,10 +1486,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1466,6 +1523,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1499,7 +1557,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-readelf"
     search_context:
       ENV{PATH}:
@@ -1513,6 +1573,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1551,10 +1612,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1586,6 +1649,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1619,7 +1683,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     searched_directories:
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-dlltool"
       - "/usr/local/sbin/aarch64-none-elf-dlltool"
@@ -1631,6 +1697,7 @@ events:
       - "/usr/games/aarch64-none-elf-dlltool"
       - "/usr/local/games/aarch64-none-elf-dlltool"
       - "/usr/lib/wsl/lib/aarch64-none-elf-dlltool"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-dlltool"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-dlltool"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-dlltool"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-dlltool"
@@ -1664,7 +1731,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-dlltool"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-dlltool"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-dlltool"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-dlltool"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-dlltool"
+      - "/snap/bin/aarch64-none-elf-dlltool"
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/dlltool"
       - "/usr/local/sbin/dlltool"
       - "/usr/local/bin/dlltool"
@@ -1675,6 +1744,7 @@ events:
       - "/usr/games/dlltool"
       - "/usr/local/games/dlltool"
       - "/usr/lib/wsl/lib/dlltool"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/dlltool"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/dlltool"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/dlltool"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/dlltool"
@@ -1708,7 +1778,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/dlltool"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/dlltool"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/dlltool"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/dlltool"
       - "/mnt/c/Users/sam_h/.dotnet/tools/dlltool"
+      - "/snap/bin/dlltool"
     found: false
     search_context:
       ENV{PATH}:
@@ -1722,6 +1794,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1760,10 +1833,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1795,6 +1870,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1828,7 +1904,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-addr2line"
     search_context:
       ENV{PATH}:
@@ -1842,6 +1920,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1880,10 +1959,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1915,6 +1996,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -1948,7 +2030,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     searched_directories:
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-tapi"
       - "/usr/local/sbin/aarch64-none-elf-tapi"
@@ -1960,6 +2044,7 @@ events:
       - "/usr/games/aarch64-none-elf-tapi"
       - "/usr/local/games/aarch64-none-elf-tapi"
       - "/usr/lib/wsl/lib/aarch64-none-elf-tapi"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-tapi"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-tapi"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-tapi"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-tapi"
@@ -1993,7 +2078,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-tapi"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-tapi"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-tapi"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-tapi"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-tapi"
+      - "/snap/bin/aarch64-none-elf-tapi"
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/tapi"
       - "/usr/local/sbin/tapi"
       - "/usr/local/bin/tapi"
@@ -2004,6 +2091,7 @@ events:
       - "/usr/games/tapi"
       - "/usr/local/games/tapi"
       - "/usr/lib/wsl/lib/tapi"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/tapi"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/tapi"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/tapi"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/tapi"
@@ -2037,7 +2125,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/tapi"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/tapi"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/tapi"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/tapi"
       - "/mnt/c/Users/sam_h/.dotnet/tools/tapi"
+      - "/snap/bin/tapi"
     found: false
     search_context:
       ENV{PATH}:
@@ -2051,6 +2141,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -2089,10 +2180,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -2126,6 +2219,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -2159,7 +2253,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     searched_directories:
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ar-15.3"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ar-15.3"
@@ -2171,6 +2267,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ar-15.3"
       - "/usr/local/games/aarch64-none-elf-gcc-ar-15.3"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ar-15.3"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ar-15.3"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ar-15.3"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ar-15.3"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ar-15.3"
@@ -2204,7 +2301,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ar-15.3"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ar-15.3"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ar-15.3"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ar-15.3"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ar-15.3"
+      - "/snap/bin/aarch64-none-elf-gcc-ar-15.3"
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ar-15"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ar-15"
       - "/usr/local/bin/aarch64-none-elf-gcc-ar-15"
@@ -2215,6 +2314,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ar-15"
       - "/usr/local/games/aarch64-none-elf-gcc-ar-15"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ar-15"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ar-15"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ar-15"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ar-15"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ar-15"
@@ -2248,7 +2348,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ar-15"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ar-15"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ar-15"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ar-15"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ar-15"
+      - "/snap/bin/aarch64-none-elf-gcc-ar-15"
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ar15"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ar15"
       - "/usr/local/bin/aarch64-none-elf-gcc-ar15"
@@ -2259,6 +2361,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ar15"
       - "/usr/local/games/aarch64-none-elf-gcc-ar15"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ar15"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ar15"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ar15"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ar15"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ar15"
@@ -2292,7 +2395,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ar15"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ar15"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ar15"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ar15"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ar15"
+      - "/snap/bin/aarch64-none-elf-gcc-ar15"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ar"
     search_context:
       ENV{PATH}:
@@ -2306,6 +2411,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -2344,10 +2450,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -2381,6 +2489,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -2414,7 +2523,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     searched_directories:
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib-15.3"
@@ -2426,6 +2537,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ranlib-15.3"
       - "/usr/local/games/aarch64-none-elf-gcc-ranlib-15.3"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ranlib-15.3"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ranlib-15.3"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ranlib-15.3"
@@ -2459,7 +2571,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ranlib-15.3"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ranlib-15.3"
+      - "/snap/bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ranlib-15"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib-15"
       - "/usr/local/bin/aarch64-none-elf-gcc-ranlib-15"
@@ -2470,6 +2584,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ranlib-15"
       - "/usr/local/games/aarch64-none-elf-gcc-ranlib-15"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ranlib-15"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ranlib-15"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ranlib-15"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ranlib-15"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ranlib-15"
@@ -2503,7 +2618,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ranlib-15"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ranlib-15"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ranlib-15"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ranlib-15"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ranlib-15"
+      - "/snap/bin/aarch64-none-elf-gcc-ranlib-15"
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ranlib15"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib15"
       - "/usr/local/bin/aarch64-none-elf-gcc-ranlib15"
@@ -2514,6 +2631,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ranlib15"
       - "/usr/local/games/aarch64-none-elf-gcc-ranlib15"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ranlib15"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ranlib15"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ranlib15"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ranlib15"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ranlib15"
@@ -2547,7 +2665,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ranlib15"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ranlib15"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ranlib15"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ranlib15"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ranlib15"
+      - "/snap/bin/aarch64-none-elf-gcc-ranlib15"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ranlib"
     search_context:
       ENV{PATH}:
@@ -2561,6 +2681,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -2599,10 +2720,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -2633,6 +2756,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -2666,7 +2790,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-g++"
     search_context:
       ENV{PATH}:
@@ -2680,6 +2806,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -2718,10 +2845,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -2759,6 +2888,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -2797,10 +2927,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "message-v1"
     backtrace:
@@ -2868,6 +3000,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -2906,10 +3039,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "message-v1"
     backtrace:
@@ -2965,6 +3100,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -2998,7 +3134,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     searched_directories:
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ar-15.3"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ar-15.3"
@@ -3010,6 +3148,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ar-15.3"
       - "/usr/local/games/aarch64-none-elf-gcc-ar-15.3"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ar-15.3"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ar-15.3"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ar-15.3"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ar-15.3"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ar-15.3"
@@ -3043,7 +3182,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ar-15.3"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ar-15.3"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ar-15.3"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ar-15.3"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ar-15.3"
+      - "/snap/bin/aarch64-none-elf-gcc-ar-15.3"
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ar-15"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ar-15"
       - "/usr/local/bin/aarch64-none-elf-gcc-ar-15"
@@ -3054,6 +3195,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ar-15"
       - "/usr/local/games/aarch64-none-elf-gcc-ar-15"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ar-15"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ar-15"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ar-15"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ar-15"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ar-15"
@@ -3087,7 +3229,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ar-15"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ar-15"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ar-15"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ar-15"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ar-15"
+      - "/snap/bin/aarch64-none-elf-gcc-ar-15"
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ar15"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ar15"
       - "/usr/local/bin/aarch64-none-elf-gcc-ar15"
@@ -3098,6 +3242,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ar15"
       - "/usr/local/games/aarch64-none-elf-gcc-ar15"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ar15"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ar15"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ar15"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ar15"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ar15"
@@ -3131,7 +3276,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ar15"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ar15"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ar15"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ar15"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ar15"
+      - "/snap/bin/aarch64-none-elf-gcc-ar15"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ar"
     search_context:
       ENV{PATH}:
@@ -3145,6 +3292,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -3183,10 +3331,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -3220,6 +3370,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -3253,7 +3404,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     searched_directories:
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib-15.3"
@@ -3265,6 +3418,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ranlib-15.3"
       - "/usr/local/games/aarch64-none-elf-gcc-ranlib-15.3"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ranlib-15.3"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ranlib-15.3"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ranlib-15.3"
@@ -3298,7 +3452,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ranlib-15.3"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ranlib-15.3"
+      - "/snap/bin/aarch64-none-elf-gcc-ranlib-15.3"
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ranlib-15"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib-15"
       - "/usr/local/bin/aarch64-none-elf-gcc-ranlib-15"
@@ -3309,6 +3465,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ranlib-15"
       - "/usr/local/games/aarch64-none-elf-gcc-ranlib-15"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ranlib-15"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ranlib-15"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ranlib-15"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ranlib-15"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ranlib-15"
@@ -3342,7 +3499,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ranlib-15"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ranlib-15"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ranlib-15"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ranlib-15"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ranlib-15"
+      - "/snap/bin/aarch64-none-elf-gcc-ranlib-15"
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ranlib15"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib15"
       - "/usr/local/bin/aarch64-none-elf-gcc-ranlib15"
@@ -3353,6 +3512,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ranlib15"
       - "/usr/local/games/aarch64-none-elf-gcc-ranlib15"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ranlib15"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ranlib15"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ranlib15"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ranlib15"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ranlib15"
@@ -3386,7 +3546,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ranlib15"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ranlib15"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ranlib15"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ranlib15"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ranlib15"
+      - "/snap/bin/aarch64-none-elf-gcc-ranlib15"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ranlib"
     search_context:
       ENV{PATH}:
@@ -3400,6 +3562,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -3438,10 +3601,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -3472,6 +3637,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -3505,7 +3671,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc"
     search_context:
       ENV{PATH}:
@@ -3519,6 +3687,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -3557,10 +3726,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "message-v1"
     backtrace:
@@ -3607,6 +3778,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -3640,7 +3812,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     searched_directories:
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ar-"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ar-"
@@ -3652,6 +3826,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ar-"
       - "/usr/local/games/aarch64-none-elf-gcc-ar-"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ar-"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ar-"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ar-"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ar-"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ar-"
@@ -3685,7 +3860,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ar-"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ar-"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ar-"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ar-"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ar-"
+      - "/snap/bin/aarch64-none-elf-gcc-ar-"
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ar-"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ar-"
       - "/usr/local/bin/aarch64-none-elf-gcc-ar-"
@@ -3696,6 +3873,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ar-"
       - "/usr/local/games/aarch64-none-elf-gcc-ar-"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ar-"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ar-"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ar-"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ar-"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ar-"
@@ -3729,7 +3907,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ar-"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ar-"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ar-"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ar-"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ar-"
+      - "/snap/bin/aarch64-none-elf-gcc-ar-"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ar"
     search_context:
       ENV{PATH}:
@@ -3743,6 +3923,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -3781,10 +3962,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -3818,6 +4001,7 @@ events:
       - "/usr/games/"
       - "/usr/local/games/"
       - "/usr/lib/wsl/lib/"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -3851,7 +4035,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/"
       - "/mnt/c/Users/sam_h/.dotnet/tools/"
+      - "/snap/bin/"
     searched_directories:
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ranlib-"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib-"
@@ -3863,6 +4049,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ranlib-"
       - "/usr/local/games/aarch64-none-elf-gcc-ranlib-"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ranlib-"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ranlib-"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ranlib-"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ranlib-"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ranlib-"
@@ -3896,7 +4083,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ranlib-"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ranlib-"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ranlib-"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ranlib-"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ranlib-"
+      - "/snap/bin/aarch64-none-elf-gcc-ranlib-"
       - "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ranlib-"
       - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib-"
       - "/usr/local/bin/aarch64-none-elf-gcc-ranlib-"
@@ -3907,6 +4096,7 @@ events:
       - "/usr/games/aarch64-none-elf-gcc-ranlib-"
       - "/usr/local/games/aarch64-none-elf-gcc-ranlib-"
       - "/usr/lib/wsl/lib/aarch64-none-elf-gcc-ranlib-"
+      - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe/aarch64-none-elf-gcc-ranlib-"
       - "/mnt/c/VulkanSDK/1.4.357.0/Bin/aarch64-none-elf-gcc-ranlib-"
       - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin/aarch64-none-elf-gcc-ranlib-"
       - "/mnt/c/Program Files/Microsoft MPI/Bin/aarch64-none-elf-gcc-ranlib-"
@@ -3940,7 +4130,9 @@ events:
       - "/mnt/d/Program Files/CMake/bin/aarch64-none-elf-gcc-ranlib-"
       - "/mnt/d/Program Files (x86)/GnuPG/bin/aarch64-none-elf-gcc-ranlib-"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/aarch64-none-elf-gcc-ranlib-"
+      - "/mnt/c/Program Files/WYVRN/Service/bin/aarch64-none-elf-gcc-ranlib-"
       - "/mnt/c/Users/sam_h/.dotnet/tools/aarch64-none-elf-gcc-ranlib-"
+      - "/snap/bin/aarch64-none-elf-gcc-ranlib-"
     found: "/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc-ranlib"
     search_context:
       ENV{PATH}:
@@ -3954,6 +4146,7 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/usr/lib/wsl/lib"
+        - "/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.3.0_x64__8wekyb3d8bbwe"
         - "/mnt/c/VulkanSDK/1.4.357.0/Bin"
         - "/mnt/c/Program Files/Eclipse Adoptium/jre-21.0.6.7-hotspot/bin"
         - "/mnt/c/Program Files/Microsoft MPI/Bin/"
@@ -3992,10 +4185,12 @@ events:
         - "/mnt/d/Program Files/CMake/bin"
         - "/mnt/d/Program Files (x86)/GnuPG/bin"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
+        - "/mnt/c/Program Files/WYVRN/Service/bin"
         - "/mnt/c/Users/sam_h/AppData/Local/Microsoft/WindowsApps"
         - "/mnt/c/Users/sam_h/AppData/Local/GitHubDesktop/bin"
         - "/mnt/c/Users/sam_h/.dotnet/tools"
         - "/mnt/c/Users/sam_h/AppData/Local/Programs/cursor/resources/app/bin"
+        - "/snap/bin"
   -
     kind: "try_compile-v1"
     backtrace:
@@ -4005,8 +4200,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-nn6SYr"
-      binary: "/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-nn6SYr"
+      source: "/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-NMLEyP"
+      binary: "/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-NMLEyP"
     cmakeVariables:
       CMAKE_C_FLAGS: "-ffreestanding -fno-builtin"
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -4015,10 +4210,13 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-nn6SYr'
+        Change Dir: '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-NMLEyP'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_b4097
-        [1/2] /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc   -ffreestanding -fno-builtin    -v -o CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_cd728/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_cd728.dir/build.make CMakeFiles/cmTC_cd728.dir/build
+        gmake[1]: Entering directory '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-NMLEyP'
+        Building C object CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj
+        /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc   -ffreestanding -fno-builtin    -v -o CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c
         Using built-in specs.
         COLLECT_GCC=/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc
         Target: aarch64-none-elf
@@ -4026,8 +4224,8 @@ events:
         Thread model: single
         Supported LTO compression algorithms: zlib zstd
         gcc version 15.3.1 20260627 (Arm GNU Toolchain 15.3.Rel1 (Build arm-15.149)) 
-        COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-v' '-o' 'CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_b4097.dir/'
-         /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/aarch64-none-elf/15.3.1/cc1 -quiet -v -iprefix /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/ -isysroot /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../aarch64-none-elf /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_b4097.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mlittle-endian -mabi=lp64 -version -ffreestanding -fno-builtin -o /tmp/ccGb0ZqT.s
+        COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-v' '-o' 'CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_cd728.dir/'
+         /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/aarch64-none-elf/15.3.1/cc1 -quiet -v -iprefix /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/ -isysroot /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../aarch64-none-elf /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_cd728.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mlittle-endian -mabi=lp64 -version -ffreestanding -fno-builtin -o /tmp/ccyqcuO7.s
         GNU C23 (Arm GNU Toolchain 15.3.Rel1 (Build arm-15.149)) version 15.3.1 20260627 (aarch64-none-elf)
         	compiled by GNU C version 9.2.1 20191120 (Red Hat 9.2.1-2), GMP version 6.2.1, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.15-1-g835ea3a-GMP
         
@@ -4044,13 +4242,18 @@ events:
          /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/include
         End of search list.
         Compiler executable checksum: 85621f677d52840aa21747841db7ee05
-        COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-v' '-o' 'CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_b4097.dir/'
-         /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.obj /tmp/ccGb0ZqT.s
+        COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-v' '-o' 'CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_cd728.dir/'
+         /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj /tmp/ccyqcuO7.s
         GNU assembler version 2.45.1 (aarch64-none-elf) using BFD version (Arm GNU Toolchain 15.3.Rel1 (Build arm-15.149)) 2.45.1.20260126
         COMPILER_PATH=/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/aarch64-none-elf/15.3.1/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/bin/
         LIBRARY_PATH=/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/lib/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../aarch64-none-elf/lib/
-        COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-v' '-o' 'CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.'
-        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_b4097.a && /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ar qc libcmTC_b4097.a  CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.obj && /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ranlib libcmTC_b4097.a && :
+        COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-v' '-o' 'CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.'
+        Linking C static library libcmTC_cd728.a
+        /usr/bin/cmake -P CMakeFiles/cmTC_cd728.dir/cmake_clean_target.cmake
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cd728.dir/link.txt --verbose=1
+        /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ar qc libcmTC_cd728.a CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj
+        /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ranlib libcmTC_cd728.a
+        gmake[1]: Leaving directory '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-NMLEyP'
         
       exitCode: 0
   -
@@ -4083,10 +4286,13 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-nn6SYr']
+        ignore line: [Change Dir: '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-NMLEyP']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/ninja -v cmTC_b4097]
-        ignore line: [[1/2] /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc   -ffreestanding -fno-builtin    -v -o CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_cd728/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_cd728.dir/build.make CMakeFiles/cmTC_cd728.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-NMLEyP']
+        ignore line: [Building C object CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc   -ffreestanding -fno-builtin    -v -o CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc]
         ignore line: [Target: aarch64-none-elf]
@@ -4094,8 +4300,8 @@ events:
         ignore line: [Thread model: single]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 15.3.1 20260627 (Arm GNU Toolchain 15.3.Rel1 (Build arm-15.149)) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-v' '-o' 'CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_b4097.dir/']
-        ignore line: [ /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/aarch64-none-elf/15.3.1/cc1 -quiet -v -iprefix /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/ -isysroot /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../aarch64-none-elf /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_b4097.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mlittle-endian -mabi=lp64 -version -ffreestanding -fno-builtin -o /tmp/ccGb0ZqT.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-v' '-o' 'CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_cd728.dir/']
+        ignore line: [ /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/aarch64-none-elf/15.3.1/cc1 -quiet -v -iprefix /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/ -isysroot /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../aarch64-none-elf /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_cd728.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mlittle-endian -mabi=lp64 -version -ffreestanding -fno-builtin -o /tmp/ccyqcuO7.s]
         ignore line: [GNU C23 (Arm GNU Toolchain 15.3.Rel1 (Build arm-15.149)) version 15.3.1 20260627 (aarch64-none-elf)]
         ignore line: [	compiled by GNU C version 9.2.1 20191120 (Red Hat 9.2.1-2)  GMP version 6.2.1  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.15-1-g835ea3a-GMP]
         ignore line: []
@@ -4112,13 +4318,18 @@ events:
         ignore line: [ /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: 85621f677d52840aa21747841db7ee05]
-        ignore line: [COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-v' '-o' 'CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_b4097.dir/']
-        ignore line: [ /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.obj /tmp/ccGb0ZqT.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-v' '-o' 'CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_cd728.dir/']
+        ignore line: [ /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj /tmp/ccyqcuO7.s]
         ignore line: [GNU assembler version 2.45.1 (aarch64-none-elf) using BFD version (Arm GNU Toolchain 15.3.Rel1 (Build arm-15.149)) 2.45.1.20260126]
         ignore line: [COMPILER_PATH=/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/aarch64-none-elf/15.3.1/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/bin/]
         ignore line: [LIBRARY_PATH=/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/lib/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../aarch64-none-elf/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-v' '-o' 'CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.']
-        ignore line: [[2/2] : && /usr/bin/cmake -E rm -f libcmTC_b4097.a && /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ar qc libcmTC_b4097.a  CMakeFiles/cmTC_b4097.dir/CMakeCCompilerABI.c.obj && /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ranlib libcmTC_b4097.a && :]
+        ignore line: [COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-v' '-o' 'CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C static library libcmTC_cd728.a]
+        ignore line: [/usr/bin/cmake -P CMakeFiles/cmTC_cd728.dir/cmake_clean_target.cmake]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cd728.dir/link.txt --verbose=1]
+        ignore line: [/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ar qc libcmTC_cd728.a CMakeFiles/cmTC_cd728.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ranlib libcmTC_cd728.a]
+        ignore line: [gmake[1]: Leaving directory '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-NMLEyP']
         ignore line: []
         ignore line: []
         implicit libs: []
@@ -4136,8 +4347,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-ltDLhE"
-      binary: "/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-ltDLhE"
+      source: "/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-OqfB7d"
+      binary: "/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-OqfB7d"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "-ffreestanding -fno-builtin -fno-exceptions -fno-rtti"
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -4147,10 +4358,13 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-ltDLhE'
+        Change Dir: '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-OqfB7d'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_9474c
-        [1/2] /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-g++   -ffreestanding -fno-builtin -fno-exceptions -fno-rtti    -v -o CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5d445/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_5d445.dir/build.make CMakeFiles/cmTC_5d445.dir/build
+        gmake[1]: Entering directory '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-OqfB7d'
+        Building CXX object CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj
+        /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-g++   -ffreestanding -fno-builtin -fno-exceptions -fno-rtti    -v -o CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp
         Using built-in specs.
         COLLECT_GCC=/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-g++
         Target: aarch64-none-elf
@@ -4158,8 +4372,8 @@ events:
         Thread model: single
         Supported LTO compression algorithms: zlib zstd
         gcc version 15.3.1 20260627 (Arm GNU Toolchain 15.3.Rel1 (Build arm-15.149)) 
-        COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-fno-exceptions' '-fno-rtti' '-v' '-o' 'CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_9474c.dir/'
-         /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/aarch64-none-elf/15.3.1/cc1plus -quiet -v -iprefix /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/ -isysroot /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../aarch64-none-elf /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_9474c.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mlittle-endian -mabi=lp64 -version -ffreestanding -fno-builtin -fno-exceptions -fno-rtti -o /tmp/ccZW7yif.s
+        COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-fno-exceptions' '-fno-rtti' '-v' '-o' 'CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_5d445.dir/'
+         /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/aarch64-none-elf/15.3.1/cc1plus -quiet -v -iprefix /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/ -isysroot /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../aarch64-none-elf /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_5d445.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mlittle-endian -mabi=lp64 -version -ffreestanding -fno-builtin -fno-exceptions -fno-rtti -o /tmp/ccCJr2g7.s
         GNU C++17 (Arm GNU Toolchain 15.3.Rel1 (Build arm-15.149)) version 15.3.1 20260627 (aarch64-none-elf)
         	compiled by GNU C version 9.2.1 20191120 (Red Hat 9.2.1-2), GMP version 6.2.1, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.15-1-g835ea3a-GMP
         
@@ -4182,13 +4396,18 @@ events:
          /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/include
         End of search list.
         Compiler executable checksum: fa906b4ae181ea75fb9717a32c22ae1f
-        COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-fno-exceptions' '-fno-rtti' '-v' '-o' 'CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_9474c.dir/'
-         /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccZW7yif.s
+        COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-fno-exceptions' '-fno-rtti' '-v' '-o' 'CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_5d445.dir/'
+         /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccCJr2g7.s
         GNU assembler version 2.45.1 (aarch64-none-elf) using BFD version (Arm GNU Toolchain 15.3.Rel1 (Build arm-15.149)) 2.45.1.20260126
         COMPILER_PATH=/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/aarch64-none-elf/15.3.1/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/bin/
         LIBRARY_PATH=/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/lib/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../aarch64-none-elf/lib/
-        COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-fno-exceptions' '-fno-rtti' '-v' '-o' 'CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.'
-        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_9474c.a && /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ar qc libcmTC_9474c.a  CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.obj && /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ranlib libcmTC_9474c.a && :
+        COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-fno-exceptions' '-fno-rtti' '-v' '-o' 'CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX static library libcmTC_5d445.a
+        /usr/bin/cmake -P CMakeFiles/cmTC_5d445.dir/cmake_clean_target.cmake
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5d445.dir/link.txt --verbose=1
+        /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ar qc libcmTC_5d445.a CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj
+        /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ranlib libcmTC_5d445.a
+        gmake[1]: Leaving directory '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-OqfB7d'
         
       exitCode: 0
   -
@@ -4227,10 +4446,13 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-ltDLhE']
+        ignore line: [Change Dir: '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-OqfB7d']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/ninja -v cmTC_9474c]
-        ignore line: [[1/2] /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-g++   -ffreestanding -fno-builtin -fno-exceptions -fno-rtti    -v -o CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5d445/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_5d445.dir/build.make CMakeFiles/cmTC_5d445.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-OqfB7d']
+        ignore line: [Building CXX object CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-g++   -ffreestanding -fno-builtin -fno-exceptions -fno-rtti    -v -o CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-g++]
         ignore line: [Target: aarch64-none-elf]
@@ -4238,8 +4460,8 @@ events:
         ignore line: [Thread model: single]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 15.3.1 20260627 (Arm GNU Toolchain 15.3.Rel1 (Build arm-15.149)) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-fno-exceptions' '-fno-rtti' '-v' '-o' 'CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_9474c.dir/']
-        ignore line: [ /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/aarch64-none-elf/15.3.1/cc1plus -quiet -v -iprefix /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/ -isysroot /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../aarch64-none-elf /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_9474c.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mlittle-endian -mabi=lp64 -version -ffreestanding -fno-builtin -fno-exceptions -fno-rtti -o /tmp/ccZW7yif.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-fno-exceptions' '-fno-rtti' '-v' '-o' 'CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_5d445.dir/']
+        ignore line: [ /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/aarch64-none-elf/15.3.1/cc1plus -quiet -v -iprefix /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/ -isysroot /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../aarch64-none-elf /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_5d445.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mlittle-endian -mabi=lp64 -version -ffreestanding -fno-builtin -fno-exceptions -fno-rtti -o /tmp/ccCJr2g7.s]
         ignore line: [GNU C++17 (Arm GNU Toolchain 15.3.Rel1 (Build arm-15.149)) version 15.3.1 20260627 (aarch64-none-elf)]
         ignore line: [	compiled by GNU C version 9.2.1 20191120 (Red Hat 9.2.1-2)  GMP version 6.2.1  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.15-1-g835ea3a-GMP]
         ignore line: []
@@ -4262,13 +4484,18 @@ events:
         ignore line: [ /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: fa906b4ae181ea75fb9717a32c22ae1f]
-        ignore line: [COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-fno-exceptions' '-fno-rtti' '-v' '-o' 'CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_9474c.dir/']
-        ignore line: [ /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccZW7yif.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-fno-exceptions' '-fno-rtti' '-v' '-o' 'CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_5d445.dir/']
+        ignore line: [ /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccCJr2g7.s]
         ignore line: [GNU assembler version 2.45.1 (aarch64-none-elf) using BFD version (Arm GNU Toolchain 15.3.Rel1 (Build arm-15.149)) 2.45.1.20260126]
         ignore line: [COMPILER_PATH=/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/aarch64-none-elf/15.3.1/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../libexec/gcc/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/bin/]
         ignore line: [LIBRARY_PATH=/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../lib/gcc/aarch64-none-elf/15.3.1/../../../../aarch64-none-elf/lib/:/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/../aarch64-none-elf/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-fno-exceptions' '-fno-rtti' '-v' '-o' 'CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [[2/2] : && /usr/bin/cmake -E rm -f libcmTC_9474c.a && /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ar qc libcmTC_9474c.a  CMakeFiles/cmTC_9474c.dir/CMakeCXXCompilerABI.cpp.obj && /home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ranlib libcmTC_9474c.a && :]
+        ignore line: [COLLECT_GCC_OPTIONS='-ffreestanding' '-fno-builtin' '-fno-exceptions' '-fno-rtti' '-v' '-o' 'CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX static library libcmTC_5d445.a]
+        ignore line: [/usr/bin/cmake -P CMakeFiles/cmTC_5d445.dir/cmake_clean_target.cmake]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5d445.dir/link.txt --verbose=1]
+        ignore line: [/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ar qc libcmTC_5d445.a CMakeFiles/cmTC_5d445.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [/home/krystal/opt/arm-gnu-toolchain-15.3.rel1-x86_64-aarch64-none-elf/bin/aarch64-none-elf-ranlib libcmTC_5d445.a]
+        ignore line: [gmake[1]: Leaving directory '/home/krystal/projects/PlanetoidOS/build/CMakeFiles/CMakeScratch/TryCompile-OqfB7d']
         ignore line: []
         ignore line: []
         implicit libs: []

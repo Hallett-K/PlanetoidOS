@@ -32,4 +32,11 @@ SECTIONS
         __stack_top = .;
 
     }
+
+    .mmu_test 0x50200000 :
+    {
+        __mmu_test_start = .;
+        *(.mmu_test)
+        __mmu_test_end = .;
+    }
 }

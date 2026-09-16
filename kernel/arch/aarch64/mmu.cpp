@@ -4,6 +4,7 @@ namespace MMU
 {
     alignas(4096) uint64_t level1_table[512];
     alignas(4096) uint64_t level2_table[512];
+    alignas(4096) uint64_t level2_ram_table[512];
 }
 
 namespace
@@ -19,9 +20,10 @@ namespace MemoryBlockAttributes
     const uint64_t ATTR_NORMAL_MEMORY = 0ULL << 2;
     const uint64_t ATTR_DEVICE_MEMORY = 1ULL << 2;
     const uint64_t ATTR_ACCESS = 1ULL << 10; // This block has been accessed
-    const uint64_t ATTR_SHAREABLE = 1ULL << 8;
+    const uint64_t ATTR_SHAREABLE = 0b11ULL << 8;
 
-    const uint64_t ATTR_EL1_RW = 0ULL << 6; // Allow read/write for EL1 only
+    const uint64_t ATTR_EL1_RW = 0b00ULL << 6; // Allow read/write for EL1 only
+    const uint64_t ATTR_EL1_RO = 0b10ULL << 6; // Read Only from EL1
 
     const uint64_t ATTR_PXN = 1ULL << 53; // Privelleged Execute Never
     const uint64_t ATTR_UXN = 1ULL << 54; // Unprivelleged Execute Never
@@ -41,34 +43,40 @@ uint64_t make_table_descriptor(uint64_t address)
     return (address & ADDRESS_MASK) | TABLE_DESCRIPTOR;
 }
 
-uint64_t make_normal_block_descriptor(uint64_t address)
+uint64_t make_normal_block_descriptor(uint64_t address, uint64_t permissions)
 {
     return (address & ADDRESS_MASK) 
     | BLOCK_DESCRIPTOR
     | MemoryBlockAttributes::ATTR_NORMAL_MEMORY
     | MemoryBlockAttributes::ATTR_ACCESS
     | MemoryBlockAttributes::ATTR_SHAREABLE
-    | MemoryBlockAttributes::ATTR_EL1_RW;
+    | permissions;
 }
 
-uint64_t make_device_block_descriptor(uint64_t address)
+uint64_t make_device_block_descriptor(uint64_t address, uint64_t permissions)
 {
     return (address & ADDRESS_MASK) 
     | BLOCK_DESCRIPTOR
     | MemoryBlockAttributes::ATTR_DEVICE_MEMORY
     | MemoryBlockAttributes::ATTR_ACCESS
-    | MemoryBlockAttributes::ATTR_EL1_RW
-    | MemoryBlockAttributes::ATTR_PXN
-    | MemoryBlockAttributes::ATTR_UXN;
+    | permissions;
 }
 
 void MMU::init()
 {
     level1_table[0] = make_table_descriptor((uint64_t)level2_table); // 0x00000000 - 0x3FFFFFFF covered by level 2 table
-    level1_table[1] = make_normal_block_descriptor(0x40000000); // 0x40000000 - 0x7FFFFFFF identity mapped
+    level1_table[1] = make_table_descriptor((uint64_t)level2_ram_table); // 0x40000000 - 0x7FFFFFFF identity mapped
 
-    level2_table[64] = make_device_block_descriptor(0x08000000); // identity map GIC block
-    level2_table[72] = make_device_block_descriptor(0x09000000); // identity map UART block
+    level2_table[64] = make_device_block_descriptor(0x08000000, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN | MemoryBlockAttributes::ATTR_UXN); // identity map GIC block
+    level2_table[72] = make_device_block_descriptor(0x09000000, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN | MemoryBlockAttributes::ATTR_UXN); // identity map UART block
+
+    for (uint32_t i = 0; i < 512; i++)
+    {
+        level2_ram_table[i] = make_normal_block_descriptor(0x40000000 + (i * 0x200000), MemoryBlockAttributes::ATTR_EL1_RW);
+    }
+
+    level2_ram_table[128] = make_normal_block_descriptor(0x50000000, MemoryBlockAttributes::ATTR_EL1_RO);
+    level2_ram_table[129] = make_normal_block_descriptor(0x50200000, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN | MemoryBlockAttributes::ATTR_UXN);
 
     asm volatile("msr ttbr0_el1, %0"
         :
