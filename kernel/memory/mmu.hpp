@@ -33,6 +33,7 @@ namespace MMU
     PageTable allocate_page_table();
     bool map_page(uint64_t virtual_address, uint64_t physical_address, EMemoryType memry_type, uint64_t permissions);
     bool unmap_page(uint64_t virtual_address);
+    uint64_t get_physical_address(uint64_t virtual_address);
 };
 
 namespace MemoryBlockAttributes

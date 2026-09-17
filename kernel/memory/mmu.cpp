@@ -397,3 +397,52 @@ bool MMU::unmap_page(uint64_t virtual_address)
 
     return true;
 }
+
+uint64_t MMU::get_physical_address(uint64_t virtual_address)
+{
+    const uint64_t page_offset = virtual_address & 0xFFF;
+
+    const uint64_t level1_index = get_level1_index(virtual_address);
+    const uint64_t level1_entry = level1_table[level1_index];
+
+    if (level1_entry == 0)
+    {
+        return 0;
+    }
+
+    if ((level1_entry & 0b11) != TABLE_DESCRIPTOR)
+    {
+        return 0;
+    }
+
+    uint64_t* level2_table = (uint64_t*)(level1_entry & ADDRESS_MASK);
+
+    const uint64_t level2_index = get_level2_index(virtual_address);
+    const uint64_t level2_entry = level2_table[level2_index];
+
+    if (level2_entry == 0)
+    {
+        return 0;
+    }
+
+    if ((level2_entry & 0b11) != TABLE_DESCRIPTOR)
+    {
+        return 0;
+    }
+
+    uint64_t* level3_table = (uint64_t*)(level2_entry & ADDRESS_MASK);
+    
+    const uint64_t level3_index = get_level3_index(virtual_address);
+    const uint64_t level3_entry = level3_table[level3_index];
+    if (level3_entry == 0)
+    {
+        return 0;
+    }
+
+    if ((level3_entry & 0b11) != PAGE_DESCRIPTOR)
+    {
+        return 0;
+    }
+
+    return (level3_entry & ADDRESS_MASK) + page_offset;
+}

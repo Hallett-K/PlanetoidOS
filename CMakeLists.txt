@@ -14,7 +14,8 @@ add_executable(PlanetoidOS
     kernel/core/log.cpp
     kernel/memory/memory_map.cpp 
     kernel/memory/mmu.cpp
-    kernel/memory/physical_memory.cpp)
+    kernel/memory/physical_memory.cpp
+    kernel/memory/virtual_memory.cpp)
 
 target_compile_options(PlanetoidOS PRIVATE -Wall -Wextra)
 target_link_options(PlanetoidOS PRIVATE -T${CMAKE_SOURCE_DIR}/linker/kernel.ld -nostdlib -nodefaultlibs -nostartfiles)
