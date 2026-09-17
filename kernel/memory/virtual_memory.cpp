@@ -94,6 +94,81 @@ uint64_t VirtualMemory::allocate_page()
     return 0;
 }
 
+uint64_t VirtualMemory::allocate_pages(uint64_t page_count)
+{
+    if (page_count == 0)
+    {
+        return 0;
+    }
+
+    if (page_count > VIRTUAL_PAGE_COUNT)
+    {
+        return 0;
+    }
+
+    uint64_t consecutive_free_pages = 0;
+    uint64_t first_page = VIRTUAL_PAGE_COUNT;
+    for (uint64_t current_page = 0; current_page < VIRTUAL_PAGE_COUNT; current_page++)
+    {
+        if (is_page_used(current_page))
+        {
+            consecutive_free_pages = 0;
+            continue;
+        }
+
+        consecutive_free_pages++;
+
+        if (consecutive_free_pages == page_count)
+        {
+            first_page = current_page - page_count + 1;
+            break;
+        }
+    }
+
+    if (first_page == VIRTUAL_PAGE_COUNT)
+    {
+        return 0;
+    }
+
+    uint64_t allocated_page_count = 0;
+
+    for (uint64_t page = first_page; page < first_page + page_count; page++)
+    {
+        const uint64_t virtual_address = VIRTUAL_MEMORY_START + (page * PAGE_SIZE);
+        const uint64_t frame = PhysicalMemory::allocate_frame();
+        if (frame == 0)
+        {
+            break;
+        }
+
+        if (!MMU::map_page(virtual_address, frame, MMU::EMemoryType::Normal, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN))
+        {
+            PhysicalMemory::free_frame(frame);
+            break;
+        }
+
+        set_page_used(page);
+        allocated_page_count++;
+    }
+
+    if (allocated_page_count != page_count)
+    {
+        for (uint64_t page = first_page; page < first_page + allocated_page_count; page++)
+        {
+            const uint64_t virtual_address = VIRTUAL_MEMORY_START + (page * PAGE_SIZE);
+            const uint64_t frame = MMU::get_physical_address(virtual_address);
+
+            MMU::unmap_page(virtual_address);
+            PhysicalMemory::free_frame(frame);
+            set_page_free(page);
+        }
+
+        return 0;
+    }
+
+    return VIRTUAL_MEMORY_START + (first_page * PAGE_SIZE);
+}
+
 bool VirtualMemory::free_page(uint64_t virtual_address)
 {
     if (virtual_address < VIRTUAL_MEMORY_START || virtual_address >= VIRTUAL_MEMORY_END)
@@ -125,6 +200,40 @@ bool VirtualMemory::free_page(uint64_t virtual_address)
 
     PhysicalMemory::free_frame(physical_address);
     set_page_free(page);
+
+    return true;
+}
+
+bool VirtualMemory::free_pages(uint64_t virtual_address, uint64_t page_count)
+{
+    if (page_count == 0 || page_count > VIRTUAL_PAGE_COUNT)
+    {
+        return false;
+    }
+
+    if (virtual_address < VIRTUAL_MEMORY_START || virtual_address >= VIRTUAL_MEMORY_END)
+    {
+        return false;
+    }
+
+    if ((virtual_address & (PAGE_SIZE - 1)) != 0)
+    {
+        return false;
+    }
+
+    const uint64_t last_virtual_address = virtual_address + ((page_count - 1) * PAGE_SIZE);
+    if (last_virtual_address >= VIRTUAL_MEMORY_END)
+    {
+        return false;
+    }
+
+    for (uint64_t i = 0; i < page_count; i++)
+    {
+        if (!free_page(virtual_address + (i * PAGE_SIZE)))
+        {
+            return false;
+        }
+    }
 
     return true;
 }
