@@ -1,5 +1,7 @@
 #include "interrupts.hpp"
 
+#include "arch/aarch64/exception.hpp"
+
 namespace
 {
     const uint32_t MAX_INTERRUPTS = 1024;
@@ -51,7 +53,7 @@ bool Interrupts::unregister_handler(uint32_t interrupt_id)
     return true;
 }
 
-void Interrupts::dispatch_interrupt(uint32_t interrupt_id)
+void Interrupts::dispatch_interrupt(uint32_t interrupt_id, exception_context* context)
 {
     if (interrupt_id >= MAX_INTERRUPTS)
     {
@@ -61,6 +63,6 @@ void Interrupts::dispatch_interrupt(uint32_t interrupt_id)
     Handler handler = handlers[interrupt_id];
     if (handler != nullptr)
     {
-        handler(interrupt_id);
+        handler(interrupt_id, context);
     }
 }

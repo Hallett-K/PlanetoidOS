@@ -2,6 +2,7 @@
 
 #include "core/interrupts.hpp"
 #include "core/log.hpp"
+#include "core/task/scheduler.hpp"
 
 namespace
 {
@@ -26,10 +27,11 @@ uint64_t get_counter_value()
     return value;
 }
 
-void on_timer_interrupt(uint32_t interrupt_id)
+void on_timer_interrupt(uint32_t interrupt_id, exception_context* context)
 {
     (void)interrupt_id;
     Timer::on_interrupt();
+    Scheduler::preempt(context);
 }
 
 void Timer::init(uint32_t frequency)

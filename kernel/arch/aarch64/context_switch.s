@@ -32,3 +32,17 @@ task_switch:
 
 .Lresume:
     ret
+
+.global task_entry_trampoline
+.type task_entry_trampoline, %function
+
+task_entry_trampoline:
+    mov x0, x19
+    blr x0
+
+    bl task_terminated
+
+1:
+    wfi
+    b 1b
+    

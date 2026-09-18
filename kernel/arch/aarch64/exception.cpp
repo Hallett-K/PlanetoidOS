@@ -186,7 +186,7 @@ extern "C" void irq_exception_handler(exception_context* context)
 
     const uint32_t interrupt_id = GIC::acknowledge_interrupt();
     
-    Interrupts::dispatch_interrupt(interrupt_id);
+    Interrupts::dispatch_interrupt(interrupt_id, context);
 
     GIC::end_interrupt(interrupt_id);
 }

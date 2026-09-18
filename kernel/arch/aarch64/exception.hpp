@@ -10,4 +10,5 @@ struct exception_context
     uint64_t esr;
     uint64_t far;
     uint64_t spsr;
+    uint64_t sp;
 };

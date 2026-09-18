@@ -30,22 +30,14 @@ void halt()
 
 void task_a_func()
 {
-    while (true)
-    {
-        Log::Info("Task A");
-        Timer::delay(100);
-        Scheduler::yield();
-    }
+    Log::Info("Task A Started");
+    Log::Info("Task A Terminating");
 }
 
 void task_b_func()
 {
-    while (true)
-    {
-        Log::Info("Task B");
-        Timer::delay(100);
-        Scheduler::yield();
-    }
+    Log::Info("Task B Started");
+    Log::Info("Task B Terminating");
 }
 
 extern "C" void kernel_main()
@@ -59,21 +51,31 @@ extern "C" void kernel_main()
     MMU::init();
     Log::Info("MMU Enabled!");
 
-    GIC::enable_interrupt(30); // Timer interrupt
-    Timer::init(100); // ticks every 1/100th of a second
-    enable_interrupts();
+    
 
     PhysicalMemory::init();
     VirtualMemory::init();
     KernelHeapAllocator::init();
 
+    Log::Info("Memory initialised");
+
     Scheduler::init();
 
-    Task::TaskState* task_a = Task::create_task(task_a_func, 512);
-    Task::TaskState* task_b = Task::create_task(task_b_func, 512);
+    Log::Info("Scheduler initialised");
+
+    Task::TaskState* task_a = Task::create_task(task_a_func, 4096);
+    Task::TaskState* task_b = Task::create_task(task_b_func, 4096);
+
+    Log::Info("Tasks created");
 
     Scheduler::add_task(task_a);
     Scheduler::add_task(task_b);
+
+    Log::Info("Starting tasks");
+
+    GIC::enable_interrupt(30); // Timer interrupt
+    Timer::init(100); // ticks every 1/100th of a second
+    enable_interrupts();
 
     Scheduler::start();
 
