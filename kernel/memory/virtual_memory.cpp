@@ -229,6 +229,20 @@ bool VirtualMemory::free_pages(uint64_t virtual_address, uint64_t page_count)
 
     for (uint64_t i = 0; i < page_count; i++)
     {
+        const uint64_t page_address = virtual_address + (i * PAGE_SIZE);
+        if (!is_page_used((page_address - VIRTUAL_MEMORY_START) / PAGE_SIZE))
+        {
+            return false;
+        }
+
+        if (MMU::get_physical_address(page_address) == 0)
+        {
+            return false;
+        }
+    }
+
+    for (uint64_t i = 0; i < page_count; i++)
+    {
         if (!free_page(virtual_address + (i * PAGE_SIZE)))
         {
             return false;

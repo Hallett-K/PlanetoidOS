@@ -12,6 +12,7 @@ add_executable(PlanetoidOS
     kernel/drivers/uart.c 
     kernel/core/interrupts.cpp 
     kernel/core/log.cpp
+    kernel/memory/kernel_heap.cpp
     kernel/memory/memory_map.cpp 
     kernel/memory/mmu.cpp
     kernel/memory/physical_memory.cpp

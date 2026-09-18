@@ -3,6 +3,7 @@
 #include "arch/aarch64/timer.hpp"
 #include "core/interrupts.hpp"
 #include "core/log.hpp"
+#include "memory/kernel_heap.hpp"
 #include "memory/mmu.hpp"
 #include "memory/physical_memory.hpp"
 #include "memory/virtual_memory.hpp"
@@ -42,6 +43,25 @@ extern "C" void kernel_main()
 
     PhysicalMemory::init();
     VirtualMemory::init();
+    KernelHeapAllocator::init();
+
+    void* small_a = kmalloc(64);
+    void* large = kmalloc(100000);
+    void* small_b = kmalloc(128);
+
+    if (small_a == nullptr || large == nullptr || small_b == nullptr)
+    {
+        Log::Error("Mixed kmalloc test failed");
+        return;
+    }
+
+    ((uint8_t*)small_a)[0] = 0x11;
+    ((uint8_t*)large)[99999] = 0x22;
+    ((uint8_t*)small_b)[0] = 0x33;
+
+    kfree(large);
+    kfree(small_a);
+    kfree(small_b);
 
     Log::Info("Pausing for one second!");
     Timer::delay(100);
