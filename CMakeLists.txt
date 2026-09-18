@@ -4,6 +4,7 @@ project(PlanetoidOS LANGUAGES C CXX ASM)
 
 add_executable(PlanetoidOS 
     kernel/arch/aarch64/boot.s 
+    kernel/arch/aarch64/context_switch.s
     kernel/arch/aarch64/exception.cpp 
     kernel/arch/aarch64/exception.s 
     kernel/arch/aarch64/gic.cpp 
@@ -12,6 +13,8 @@ add_executable(PlanetoidOS
     kernel/drivers/uart.c 
     kernel/core/interrupts.cpp 
     kernel/core/log.cpp
+    kernel/core/task/scheduler.cpp
+    kernel/core/task/task.cpp
     kernel/memory/kernel_heap.cpp
     kernel/memory/memory_map.cpp 
     kernel/memory/mmu.cpp

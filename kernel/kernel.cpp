@@ -3,6 +3,8 @@
 #include "arch/aarch64/timer.hpp"
 #include "core/interrupts.hpp"
 #include "core/log.hpp"
+#include "core/task/scheduler.hpp"
+#include "core/task/task.hpp"
 #include "memory/kernel_heap.hpp"
 #include "memory/mmu.hpp"
 #include "memory/physical_memory.hpp"
@@ -26,6 +28,26 @@ void halt()
     }
 }
 
+void task_a_func()
+{
+    while (true)
+    {
+        Log::Info("Task A");
+        Timer::delay(100);
+        Scheduler::yield();
+    }
+}
+
+void task_b_func()
+{
+    while (true)
+    {
+        Log::Info("Task B");
+        Timer::delay(100);
+        Scheduler::yield();
+    }
+}
+
 extern "C" void kernel_main()
 {
     Log::Info("PlanetoidOS");
@@ -45,23 +67,15 @@ extern "C" void kernel_main()
     VirtualMemory::init();
     KernelHeapAllocator::init();
 
-    void* small_a = kmalloc(64);
-    void* large = kmalloc(100000);
-    void* small_b = kmalloc(128);
+    Scheduler::init();
 
-    if (small_a == nullptr || large == nullptr || small_b == nullptr)
-    {
-        Log::Error("Mixed kmalloc test failed");
-        return;
-    }
+    Task::TaskState* task_a = Task::create_task(task_a_func, 512);
+    Task::TaskState* task_b = Task::create_task(task_b_func, 512);
 
-    ((uint8_t*)small_a)[0] = 0x11;
-    ((uint8_t*)large)[99999] = 0x22;
-    ((uint8_t*)small_b)[0] = 0x33;
+    Scheduler::add_task(task_a);
+    Scheduler::add_task(task_b);
 
-    kfree(large);
-    kfree(small_a);
-    kfree(small_b);
+    Scheduler::start();
 
     Log::Info("Pausing for one second!");
     Timer::delay(100);
