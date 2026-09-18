@@ -49,7 +49,7 @@ namespace
             return;
         }
 
-        Log::Info("Cleaning up terminated task");
+        Log::info("Cleaning up terminated task");
 
         Task::TaskState* task = pending_cleanup;
         pending_cleanup = nullptr;
@@ -60,7 +60,7 @@ namespace
 
     void idle_task_func()
     {
-        Log::Info("Scheduler idling");
+        Log::info("Scheduler idling");
         while (true)
         {
             asm volatile("wfi");

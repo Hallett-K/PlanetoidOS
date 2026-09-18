@@ -10,6 +10,17 @@
 #include "memory/physical_memory.hpp"
 #include "memory/virtual_memory.hpp"
 
+
+void disable_interrupts()
+{
+    asm volatile("msr daifset, #2"
+        : 
+        :
+        : "memory");
+
+    asm volatile("isb");
+}
+
 void enable_interrupts()
 {
     asm volatile("msr daifclr, #2"
@@ -30,58 +41,44 @@ void halt()
 
 void task_a_func()
 {
-    Log::Info("Task A Started");
-    Log::Info("Task A Terminating");
+    Log::info("Task A Started");
+    Log::info("Task A Terminating");
 }
 
 void task_b_func()
 {
-    Log::Info("Task B Started");
-    Log::Info("Task B Terminating");
+    Log::info("Task B Started");
+    Log::info("Task B Terminating");
 }
 
 extern "C" void kernel_main()
 {
-    Log::Info("PlanetoidOS");
-    Log::Info("UART Initialised.");
+    Log::info("PlanetoidOS");
+    Log::info("UART Initialised.");
 
     Interrupts::init();
     GIC::init();
-    Log::Info("GIC initialised!");
-    MMU::init();
-    Log::Info("MMU Enabled!");
+    Log::info("GIC initialised!");
 
     
-
+    MMU::init();
+    Log::info("MMU Enabled!");
+    
     PhysicalMemory::init();
     VirtualMemory::init();
     KernelHeapAllocator::init();
-
-    Log::Info("Memory initialised");
-
+    
+    Log::info("Memory initialised");
+    
     Scheduler::init();
-
-    Log::Info("Scheduler initialised");
-
-    Task::TaskState* task_a = Task::create_task(task_a_func, 4096);
-    Task::TaskState* task_b = Task::create_task(task_b_func, 4096);
-
-    Log::Info("Tasks created");
-
-    Scheduler::add_task(task_a);
-    Scheduler::add_task(task_b);
-
-    Log::Info("Starting tasks");
-
+    
+    Log::info("Scheduler initialised");
+    
     GIC::enable_interrupt(30); // Timer interrupt
     Timer::init(100); // ticks every 1/100th of a second
     enable_interrupts();
-
+    
     Scheduler::start();
-
-    Log::Info("Pausing for one second!");
-    Timer::delay(100);
-    Log::Info("Second passed!");
 
     halt();
 }

@@ -4,6 +4,12 @@
 
 _asm_start:
 
+    // Enable FP/SIMD access
+    mrs x0, CPACR_EL1
+    orr x0, x0, #(3 << 20)
+    msr CPACR_EL1, x0
+    isb
+
     // Stack
     ldr x0, =__stack_top
     mov sp, x0

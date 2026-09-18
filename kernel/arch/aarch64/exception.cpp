@@ -133,44 +133,53 @@ const char* decode_abort_error(uint64_t esr)
 
 extern "C" void sync_exception_handler(exception_context* context)
 {
-    Log::Error("Sync exception received!");
+    Log::error("Sync exception received!");
+
+    Log::error("ELR: ");
+    Log::error("    %#08x", context->elr);
+    Log::error("FAR: ");
+    Log::error("    %#08x", context->far);
+    Log::error("ESR: ");
+    Log::error("    %#08x", context->esr);
+    Log::error("SP: ");
+    Log::error("    %#08x", context->sp);
 
     const uint64_t exception_class = get_exception_class(context->esr);
     const uint8_t write = (context->esr & (1ULL << 6)) != 0;
     switch (exception_class)
     {
         case SyncExceptionErrors::ERR_UNKNOWN:
-            Log::Error("Unknown or undefined instruction");
+            Log::error("Unknown or undefined instruction");
             break;
         case SyncExceptionErrors::ERR_SVC:
-            Log::Error("SVC Instruction");
+            Log::error("SVC Instruction");
             break;
         case SyncExceptionErrors::ERR_ABORT_INS_LOWER:
-            Log::Error("Instruction abort from lower exception level");
-            Log::Error(decode_abort_error(context->esr));
+            Log::error("Instruction abort from lower exception level");
+            Log::error(decode_abort_error(context->esr));
             break;
         case SyncExceptionErrors::ERR_ABORT_INS_CURRENT:
-            Log::Error("Instruction abort from current exception level");
-            Log::Error(decode_abort_error(context->esr));
+            Log::error("Instruction abort from current exception level");
+            Log::error(decode_abort_error(context->esr));
             break;
         case SyncExceptionErrors::ERR_ABORT_DATA_LOWER:
-            Log::Error("Data abort from lower exception level");
-            Log::Error(decode_abort_error(context->esr));
+            Log::error("Data abort from lower exception level");
+            Log::error(decode_abort_error(context->esr));
             if (write)
-                Log::Error("Fault was a write operation");
+                Log::error("Fault was a write operation");
             else
-                Log::Error("Fault was a read operation");
+                Log::error("Fault was a read operation");
             break;
         case SyncExceptionErrors::ERR_ABORT_DATA_CURRENT:
-            Log::Error("Data abort from current exception level");
-            Log::Error(decode_abort_error(context->esr));
+            Log::error("Data abort from current exception level");
+            Log::error(decode_abort_error(context->esr));
             if (write)
-                Log::Error("Fault was a write operation");
+                Log::error("Fault was a write operation");
             else
-                Log::Error("Fault was a read operation");
+                Log::error("Fault was a read operation");
             break;
         default:
-            Log::Error("Unknown Error");
+            Log::error("Unknown Error");
             break;
     }
 
@@ -193,7 +202,7 @@ extern "C" void irq_exception_handler(exception_context* context)
 
 extern "C" void fiq_exception_handler()
 {
-    Log::Error("FIQ Exception");
+    Log::error("FIQ Exception");
 
     while (true)
     {
@@ -203,7 +212,7 @@ extern "C" void fiq_exception_handler()
 
 extern "C" void serror_exception_handler()
 {
-    Log::Error("SError Exception");
+    Log::error("SError Exception");
 
     while (true)
     {

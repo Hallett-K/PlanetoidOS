@@ -1,7 +1,13 @@
 #pragma once
 
+#include <cstdarg>
+#include <cstdint>
+
 namespace Log
 {
-    void Info(const char* message);
-    void Error(const char* message);
+    void info(const char* message);
+    void error(const char* message);
+
+    void info_s(const char* format, ...);
+    void error_s(const char* format, ...);
 }

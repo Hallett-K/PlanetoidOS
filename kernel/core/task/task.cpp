@@ -67,7 +67,7 @@ Task::TaskState* Task::create_blank_task()
         return nullptr;
     }
 
-    const uint64_t aligned_stack_size = align_stack_size(32);
+    const uint64_t aligned_stack_size = align_stack_size(4096);
 
     void* stack = kmalloc(aligned_stack_size);
     if (stack == nullptr)
