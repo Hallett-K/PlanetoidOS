@@ -11,4 +11,7 @@ namespace Interrupts
     bool register_handler(uint32_t interrupt_id, Handler handler);
     bool unregister_handler(uint32_t interrupt_id);
     void dispatch_interrupt(uint32_t interrupt_id, exception_context* context);
+
+    uint64_t irq_save();
+    void irq_restore(uint64_t state);
 }

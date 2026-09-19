@@ -28,6 +28,9 @@ task_switch:
 
     ldr x2, [x1, #256]
 
+    msr daifclr, #2
+    isb
+
     br x2
 
 .Lresume:

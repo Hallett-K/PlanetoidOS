@@ -1,5 +1,6 @@
 #include "scheduler.hpp"
 
+#include "core/interrupts.hpp"
 #include "core/log.hpp"
 #include "memory/kernel_heap.hpp"
 
@@ -111,23 +112,32 @@ void Scheduler::add_task(Task::TaskState* task)
         return;
     }
 
+    const uint64_t irq_state = Interrupts::irq_save();
+
     task->state = Task::EState::Ready;
 
     if (task_list == nullptr)
     {
         task_list = task;
         task->next_task = task;
+
+        Interrupts::irq_restore(irq_state);
         return;
     }
 
     task->next_task = task_list->next_task;
     task_list->next_task = task;
+
+    Interrupts::irq_restore(irq_state);
 }
 
 void Scheduler::yield()
 {
+    const uint64_t irq_state = Interrupts::irq_save();
+
     if (current_task == nullptr)
     {
+        Interrupts::irq_restore(irq_state);
         return;
     }
 
@@ -140,6 +150,7 @@ void Scheduler::yield()
 
     if (next_task == current_task)
     {
+        Interrupts::irq_restore(irq_state);
         return;
     }
 

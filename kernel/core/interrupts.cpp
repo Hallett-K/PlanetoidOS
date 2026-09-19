@@ -66,3 +66,19 @@ void Interrupts::dispatch_interrupt(uint32_t interrupt_id, exception_context* co
         handler(interrupt_id, context);
     }
 }
+
+uint64_t Interrupts::irq_save()
+{
+    uint64_t state;
+
+    asm volatile("mrs %0, daif\n"
+        "msr daifset, #2\n"
+        "isb" : "=r"(state) : : "memory");
+    return state;
+}
+
+void Interrupts::irq_restore(uint64_t state)
+{
+    asm volatile("msr daif,  %0\n"
+        "isb" : : "r"(state) : "memory");
+}
