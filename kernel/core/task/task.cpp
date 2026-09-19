@@ -53,6 +53,8 @@ Task::TaskState* Task::create_task(void(*entry_point)(), uint64_t stack_size)
     task->stack_size = aligned_stack_size;
     task->state = EState::Ready;
 
+    task->wake_tick = 0;
+
     task->next_task = nullptr;
 
     return task;
@@ -89,6 +91,8 @@ Task::TaskState* Task::create_blank_task()
     task->stack_base = (uint64_t)stack;
     task->stack_size = aligned_stack_size;
     task->state = EState::Ready;
+
+    task->wake_tick = 0;
 
     task->next_task = nullptr;
 

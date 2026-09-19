@@ -1,5 +1,6 @@
 #include "scheduler.hpp"
 
+#include "arch/aarch64/timer.hpp"
 #include "core/interrupts.hpp"
 #include "core/log.hpp"
 #include "memory/kernel_heap.hpp"
@@ -70,7 +71,7 @@ namespace
 
     Task::TaskState* find_next_ready_task(Task::TaskState* start_task)
     {
-        if (start_task == nullptr)
+        if (task_list == nullptr || start_task == nullptr)
         {
             return nullptr;
         }
@@ -331,6 +332,65 @@ void Scheduler::preempt(exception_context* context)
     context->sp = next_task->cpu_context.sp;
     context->elr = next_task->cpu_context.pc;
     context->spsr = next_task->cpu_context.pstate;
+}
+
+void Scheduler::sleep(uint64_t ticks)
+{
+    if (current_task == nullptr || ticks == 0)
+    {
+        return;
+    }
+
+    const uint64_t irq_state = Interrupts::irq_save();
+
+    Task::TaskState* previous_task = current_task;
+
+    current_task->wake_tick = Timer::get_ticks() + ticks;
+    current_task->state = Task::EState::Sleeping;
+
+    Task::TaskState* next_task = current_task->next_task;
+
+    while (next_task != previous_task && next_task->state != Task::EState::Ready)
+    {
+        next_task = next_task->next_task;
+    }
+
+    if (next_task == previous_task)
+    {
+        idle_task->state = Task::EState::Running;
+        current_task = idle_task;
+
+        task_switch(previous_task, idle_task);
+        return;
+    }
+
+    next_task->state = Task::EState::Running;
+    current_task = next_task;
+
+    task_switch(previous_task, next_task);
+}
+
+void Scheduler::update_sleeping_tasks()
+{
+    if (task_list == nullptr)
+    {
+        return;
+    }
+
+    const uint64_t current_tick = Timer::get_ticks();
+
+    Task::TaskState* task = task_list;
+
+    do
+    {
+        if (task->state == Task::EState::Sleeping && current_tick >= task->wake_tick)
+        {
+            task->state = Task::EState::Ready;
+        }
+
+        task = task->next_task;
+    }
+    while (task != task_list);
 }
 
 extern "C" [[noreturn]] void task_terminated()

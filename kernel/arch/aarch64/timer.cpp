@@ -31,6 +31,7 @@ void on_timer_interrupt(uint32_t interrupt_id, exception_context* context)
 {
     (void)interrupt_id;
     Timer::on_interrupt();
+    Scheduler::update_sleeping_tasks();
     Scheduler::preempt(context);
 }
 
@@ -67,12 +68,7 @@ uint64_t Timer::get_ticks()
 
 void Timer::delay(uint64_t ticks)
 {
-    const uint64_t target = system_ticks + ticks;
-
-    while (system_ticks < target)
-    {
-        asm volatile("wfe");
-    }
+    Scheduler::sleep(ticks);
 }
 
 uint32_t Timer::get_frequency()

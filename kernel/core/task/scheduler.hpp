@@ -16,6 +16,9 @@ namespace Scheduler
     Task::TaskState* get_current_task();
 
     void preempt(exception_context* context);
+    void sleep(uint64_t ticks);
+
+    void update_sleeping_tasks();
 };
 
 extern "C" [[noreturn]] void task_terminated();

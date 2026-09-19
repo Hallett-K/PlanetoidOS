@@ -8,6 +8,7 @@ namespace Task
     {
         Ready = 0,
         Running,
+        Sleeping,
         Blocked,
         Terminated
     };
@@ -28,6 +29,8 @@ namespace Task
         uint64_t stack_size;
         
         EState state;
+
+        uint64_t wake_tick;
 
         TaskState* next_task;
     };

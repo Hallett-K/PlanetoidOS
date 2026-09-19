@@ -43,15 +43,10 @@ void task_a_func()
 {
     Log::info("Task A Started");
 
-    for (uint32_t i = 0; i < 10; i++)
+    for (uint32_t i = 0; i < 5; i++)
     {
         Log::info_s("Task A Iteration %u", i);
-        if ((i % 2) == 0)
-        {
-            Scheduler::yield();
-        }
-
-        Timer::delay(10);
+        Timer::delay(20);
     }
 
     Log::info("Task A Terminating");
@@ -62,15 +57,10 @@ void task_b_func()
 {
     Log::info("Task B Started");
 
-    for (uint32_t i = 0; i < 10; i++)
+    for (uint32_t i = 0; i < 5; i++)
     {
         Log::info_s("Task B Iteration %u", i);
-        if ((i % 2) == 0)
-        {
-            Scheduler::yield();
-        }
-
-        Timer::delay(10);
+        Timer::delay(30);
     }
 
     Log::info("Task B Terminating");
@@ -104,7 +94,7 @@ extern "C" void kernel_main()
     Task::TaskState* task_b = Task::create_task(task_b_func, 4096);
 
     Scheduler::add_task(task_a);
-    Scheduler::add_task(task_b);
+    //Scheduler::add_task(task_b);
     
     GIC::enable_interrupt(30); // Timer interrupt
     Timer::init(100); // ticks every 1/100th of a second
