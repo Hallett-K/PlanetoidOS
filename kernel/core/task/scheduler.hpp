@@ -19,6 +19,7 @@ namespace Scheduler
     void sleep(uint64_t ticks);
 
     void update_sleeping_tasks();
+    void block_current_task();
 };
 
 extern "C" [[noreturn]] void task_terminated();

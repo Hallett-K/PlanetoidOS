@@ -56,6 +56,7 @@ Task::TaskState* Task::create_task(void(*entry_point)(), uint64_t stack_size)
     task->wake_tick = 0;
 
     task->next_task = nullptr;
+    task->wait_next = nullptr;
 
     return task;
 }
@@ -95,6 +96,7 @@ Task::TaskState* Task::create_blank_task()
     task->wake_tick = 0;
 
     task->next_task = nullptr;
+    task->wait_next = nullptr;
 
     return task;
 }

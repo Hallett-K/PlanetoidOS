@@ -33,6 +33,8 @@ namespace Task
         uint64_t wake_tick;
 
         TaskState* next_task;
+        TaskState* wait_next;
+        TaskState* cleanup_next;
     };
 
     TaskState* create_task(void(*entry_point)(), uint64_t stack_size);

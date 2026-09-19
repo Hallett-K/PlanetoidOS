@@ -136,13 +136,13 @@ extern "C" void sync_exception_handler(exception_context* context)
     Log::error("Sync exception received!");
 
     Log::error("ELR: ");
-    Log::error_s("    %#08x", context->elr);
+    Log::error("    %#08x", context->elr);
     Log::error("FAR: ");
-    Log::error_s("    %#08x", context->far);
+    Log::error("    %#08x", context->far);
     Log::error("ESR: ");
-    Log::error_s("    %#08x", context->esr);
+    Log::error("    %#08x", context->esr);
     Log::error("SP: ");
-    Log::error_s("    %#08x", context->sp);
+    Log::error("    %#08x", context->sp);
 
     const uint64_t exception_class = get_exception_class(context->esr);
     const uint8_t write = (context->esr & (1ULL << 6)) != 0;

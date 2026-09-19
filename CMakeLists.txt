@@ -13,8 +13,10 @@ add_executable(PlanetoidOS
     kernel/drivers/uart.c 
     kernel/core/interrupts.cpp 
     kernel/core/log.cpp
+    kernel/core/task/mutex.cpp
     kernel/core/task/scheduler.cpp
     kernel/core/task/task.cpp
+    kernel/core/task/wait_queue.cpp
     kernel/memory/kernel_heap.cpp
     kernel/memory/memory_map.cpp 
     kernel/memory/mmu.cpp

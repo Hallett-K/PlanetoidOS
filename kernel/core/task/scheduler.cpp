@@ -9,7 +9,9 @@ namespace
 {
     Task::TaskState* current_task = nullptr;
     Task::TaskState* task_list = nullptr;
-    Task::TaskState* pending_cleanup = nullptr;
+
+    Task::TaskState* pending_cleanup_head = nullptr;
+    Task::TaskState* pending_cleanup_tail = nullptr;
 
     Task::TaskState* launch_context = nullptr;
     Task::TaskState* idle_task = nullptr;
@@ -46,15 +48,22 @@ namespace
 
     void cleanup_terminated_task()
     {
-        if (pending_cleanup == nullptr)
+        if (pending_cleanup_head == nullptr)
         {
             return;
         }
 
         Log::info("Cleaning up terminated task");
 
-        Task::TaskState* task = pending_cleanup;
-        pending_cleanup = nullptr;
+        Task::TaskState* task = pending_cleanup_head;
+        pending_cleanup_head = task->cleanup_next;
+
+        if (pending_cleanup_head == nullptr)
+        {
+            pending_cleanup_tail = nullptr;
+        }
+
+        task->cleanup_next = nullptr;
 
         kfree((void*)task->stack_base);
         kfree(task);
@@ -97,7 +106,9 @@ void Scheduler::init()
 {
     current_task = nullptr;
     task_list = nullptr;
-    pending_cleanup = nullptr;
+
+    pending_cleanup_head = nullptr;
+    pending_cleanup_tail = nullptr;
 
     launch_context = Task::create_blank_task();
     launch_context->state = Task::EState::Running;
@@ -199,7 +210,20 @@ void Scheduler::start()
     }
 
     Task::TaskState* terminated_task = current_task;
-    pending_cleanup = terminated_task;
+
+    terminated_task->cleanup_next = nullptr;
+
+    if (pending_cleanup_tail == nullptr)
+    {
+        pending_cleanup_head = terminated_task;
+        pending_cleanup_tail = terminated_task;
+    }
+    else
+    {
+        pending_cleanup_tail->cleanup_next = terminated_task;
+        pending_cleanup_tail = terminated_task;
+    }
+
     remove_task(terminated_task);
 
     if (task_list == nullptr)
@@ -341,7 +365,7 @@ void Scheduler::sleep(uint64_t ticks)
         return;
     }
 
-    const uint64_t irq_state = Interrupts::irq_save();
+    Interrupts::irq_save();
 
     Task::TaskState* previous_task = current_task;
 
@@ -391,6 +415,36 @@ void Scheduler::update_sleeping_tasks()
         task = task->next_task;
     }
     while (task != task_list);
+}
+
+void Scheduler::block_current_task()
+{
+    if (current_task == nullptr)
+    {
+        return;
+    }
+
+    Task::TaskState* previous_task = current_task;
+    Task::TaskState* next_task = current_task->next_task;
+
+    while (next_task != current_task && next_task->state != Task::EState::Ready)
+    {
+        next_task = next_task->next_task;
+    }
+
+    if (next_task == current_task)
+    {
+        current_task = idle_task;
+        idle_task->state = Task::EState::Running;
+
+        task_switch(previous_task, idle_task);
+        return;
+    }
+
+    next_task->state = Task::EState::Running;
+    current_task = next_task;
+
+    task_switch(previous_task, next_task);
 }
 
 extern "C" [[noreturn]] void task_terminated()

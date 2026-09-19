@@ -3,8 +3,10 @@
 #include "arch/aarch64/timer.hpp"
 #include "core/interrupts.hpp"
 #include "core/log.hpp"
+#include "core/task/mutex.hpp"
 #include "core/task/scheduler.hpp"
 #include "core/task/task.hpp"
+#include "core/task/wait_queue.hpp"
 #include "memory/kernel_heap.hpp"
 #include "memory/mmu.hpp"
 #include "memory/physical_memory.hpp"
@@ -39,31 +41,33 @@ void halt()
     }
 }
 
+static Mutex::MutexState mutex;
+
 void task_a_func()
 {
-    Log::info("Task A Started");
+    Log::info("Task A locking mutex");
+    Mutex::lock(&mutex);
+    Log::info("Task A acquired mutex");
 
-    for (uint32_t i = 0; i < 5; i++)
-    {
-        Log::info_s("Task A Iteration %u", i);
-        Timer::delay(20);
-    }
+    Timer::delay(20);
 
-    Log::info("Task A Terminating");
+    Log::info("Task A unlocking mutex");
+    Mutex::unlock(&mutex);
+    
     Scheduler::terminate_current();
 }
 
 void task_b_func()
 {
-    Log::info("Task B Started");
+    Timer::delay(5);
 
-    for (uint32_t i = 0; i < 5; i++)
-    {
-        Log::info_s("Task B Iteration %u", i);
-        Timer::delay(30);
-    }
+    Log::info("Task B locking mutex");
+    Mutex::lock(&mutex);
+    Log::info("Task B acquired mutex");
 
-    Log::info("Task B Terminating");
+    Log::info("Task B unlocking mutex");
+    Mutex::unlock(&mutex);
+
     Scheduler::terminate_current();
 }
 
@@ -90,11 +94,13 @@ extern "C" void kernel_main()
     
     Log::info("Scheduler initialised");
 
+    Mutex::init(&mutex);
+
     Task::TaskState* task_a = Task::create_task(task_a_func, 4096);
     Task::TaskState* task_b = Task::create_task(task_b_func, 4096);
 
     Scheduler::add_task(task_a);
-    //Scheduler::add_task(task_b);
+    Scheduler::add_task(task_b);
     
     GIC::enable_interrupt(30); // Timer interrupt
     Timer::init(100); // ticks every 1/100th of a second

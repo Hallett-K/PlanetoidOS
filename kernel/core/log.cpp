@@ -262,21 +262,7 @@ namespace
 
 namespace Log
 {
-    void info(const char* message)
-    {
-        uart_puts("[INFO] ");
-        uart_puts(message);
-        uart_puts("\r\n");
-    }
-
-    void error(const char* message)
-    {
-        uart_puts("[ERROR] ");
-        uart_puts(message);
-        uart_puts("\r\n");
-    }
-
-    void info_s(const char* format, ...)
+    void info(const char* format, ...)
     {
         uart_puts("[INFO] ");
 
@@ -293,7 +279,7 @@ namespace Log
         uart_puts("\r\n");
     }
 
-    void error_s(const char* format, ...)
+    void error(const char* format, ...)
     {
         uart_puts("[ERROR] ");
 
