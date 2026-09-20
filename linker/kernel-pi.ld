@@ -2,7 +2,7 @@ ENTRY(_asm_start)
 
 SECTIONS
 {
-    . = 0x40080000;
+    . = 0x00200000;
 
     . = ALIGN(4096);
     .text :
@@ -30,7 +30,7 @@ SECTIONS
     }
 
     . = ALIGN(4096);
-    .bss :
+    .bss : 
     {
         __bss_start = .;
         *(.bss*)
@@ -49,7 +49,7 @@ SECTIONS
         __stack_bottom = .;
 
         . += 0x10000;
-        __stack_top = .;
 
+        __stack_top = .;
     }
 }

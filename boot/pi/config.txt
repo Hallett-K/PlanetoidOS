@@ -1,0 +1,4 @@
+arm_64bit=1
+kernel=kernel-pi5
+enable_uart=1
+os_check=0
