@@ -7,27 +7,29 @@ set_property(CACHE PLATFORM PROPERTY STRINGS virt pi5)
 
 # TODO: Common sources
 
-set(COMMON_SOURCES )
+set(COMMON_SOURCES 
+    kernel/core/interrupts.cpp
+    kernel/core/log.cpp
+    kernel/drivers/uart.c
+)
 
 if (PLATFORM STREQUAL "pi5")
     set(PLATFORM_SOURCES
         kernel/arch/aarch64/pi/boot.s
+        kernel/drivers/pi/status_led.c
         kernel/kernel_pi5.cpp
     )
     set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/linker/kernel-pi.ld)
     set(BUILD_NAME "kernel-pi5")
 elseif (PLATFORM STREQUAL "virt")
     set(PLATFORM_SOURCES
-        kernel/arch/aarch64/boot.s 
+    kernel/arch/aarch64/boot.s 
     kernel/arch/aarch64/context_switch.s
     kernel/arch/aarch64/exception.cpp 
     kernel/arch/aarch64/exception.s 
     kernel/arch/aarch64/gic.cpp 
     kernel/arch/aarch64/timer.cpp 
     kernel/kernel.cpp 
-    kernel/drivers/uart.c 
-    kernel/core/interrupts.cpp 
-    kernel/core/log.cpp
     kernel/core/task/mutex.cpp
     kernel/core/task/scheduler.cpp
     kernel/core/task/task.cpp
@@ -46,7 +48,14 @@ endif()
 
 add_executable(PlanetoidOS 
     ${PLATFORM_SOURCES}
+    ${COMMON_SOURCES}
     )
+
+if (PLATFORM STREQUAL "pi5")
+    target_compile_definitions(PlanetoidOS PRIVATE OS_PLATFORM_PI5=1)
+elseif(PLATFORM STREQUAL "virt")
+    target_compile_definitions(PlanetoidOS PRIVATE OS_PLATFORM_VIRT=1)
+endif()
 
 target_compile_options(PlanetoidOS PRIVATE -Wall -Wextra)
 target_link_options(PlanetoidOS PRIVATE -T${LINKER_SCRIPT} -nostdlib -nodefaultlibs -nostartfiles)
