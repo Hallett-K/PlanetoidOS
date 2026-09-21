@@ -15,9 +15,9 @@ static const uint32_t UART_FLAG_TXFF = 1u << 5;
 static volatile uint32_t* data = (volatile uint32_t*)UART_DATA;
 static volatile uint32_t* flags = (volatile uint32_t*)UART_FLAGS;
 
-#if OS_PLATFORM_PI5
 void uart_init()
 {
+#if OS_PLATFORM_PI5
     const uintptr_t UART_IBRD = UART_BASE + 0x24;
     const uintptr_t UART_FBRD = UART_BASE + 0x28;
     const uintptr_t UART_LCRH = UART_BASE + 0x2C;
@@ -33,8 +33,8 @@ void uart_init()
 
     *(volatile uint32_t*)UART_LCRH = (1 << 4) | ( 1 << 5) | (1 << 6);
     *(volatile uint32_t*)UART_CR = (1 << 0) | (1 << 8);
-}
 #endif
+}
 
 void uart_putc(char c)
 {

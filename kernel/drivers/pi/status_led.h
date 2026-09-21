@@ -5,6 +5,7 @@ extern "C"
 {
 #endif
 
+    void status_led_init();
     void status_led_on();
     void status_led_off();
 

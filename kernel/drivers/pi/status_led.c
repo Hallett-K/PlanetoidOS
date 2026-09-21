@@ -1,18 +1,25 @@
 #include <stdint.h>
-#include "drivers/uart.h"
 
 static const uintptr_t GPIO_BASE = 0x107C000000UL;
 
 static const uintptr_t GIO_LED_BASE_OFFSET = 0x1517C00;
 static const uintptr_t GIO_LED_DATA_OFFSET = 0x04;
+static const uintptr_t GIO_LED_IODIR_OFFSET = 0x08;
 
 static const uintptr_t GIO_LED_BASE = GPIO_BASE + GIO_LED_BASE_OFFSET;
 static const uintptr_t GIO_LED_DATA = GIO_LED_BASE + GIO_LED_DATA_OFFSET;
+static const uintptr_t GIO_LED_IODIR = GIO_LED_BASE + GIO_LED_IODIR_OFFSET;
 
 static const uint32_t LED_BIT = 1u << 9;
 
 static volatile uint32_t* base = (volatile uint32_t*)GIO_LED_BASE;
 static volatile uint32_t* data = (volatile uint32_t*)GIO_LED_DATA;
+static volatile uint32_t* iodir = (volatile uint32_t*)GIO_LED_IODIR;
+
+void status_led_init()
+{
+    *iodir &= ~LED_BIT;
+}
 
 void status_led_on()
 {

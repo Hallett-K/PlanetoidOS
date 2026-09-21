@@ -7,7 +7,8 @@ set_property(CACHE PLATFORM PROPERTY STRINGS virt pi5)
 
 # TODO: Common sources
 
-set(COMMON_SOURCES 
+set(COMMON_SOURCES
+    kernel/arch/aarch64/gic.cpp
     kernel/core/interrupts.cpp
     kernel/core/log.cpp
     kernel/drivers/uart.c
@@ -27,7 +28,6 @@ elseif (PLATFORM STREQUAL "virt")
     kernel/arch/aarch64/context_switch.s
     kernel/arch/aarch64/exception.cpp 
     kernel/arch/aarch64/exception.s 
-    kernel/arch/aarch64/gic.cpp 
     kernel/arch/aarch64/timer.cpp 
     kernel/kernel.cpp 
     kernel/core/task/mutex.cpp

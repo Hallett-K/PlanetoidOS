@@ -1,13 +1,19 @@
 #include "gic.hpp"
 
-const uintptr_t GIC_DIST_BASE = 0x08000000;
+#if OS_PLATFORM_PI5
+    const uintptr_t GIC_DIST_BASE = 0x107FFF9000UL;
+    const uintptr_t GIC_CPU_BASE = 0x107FFFA000UL;
+#else
+    const uintptr_t GIC_DIST_BASE = 0x08000000;
+    const uintptr_t GIC_CPU_BASE = 0x08010000;
+#endif
+
 const uintptr_t GIC_DIST_CTL = GIC_DIST_BASE + 0x000;
 const uintptr_t GIC_DIST_TYPER = GIC_DIST_BASE + 0x004;
 const uintptr_t GIC_DIST_ISENABLER_BASE = GIC_DIST_BASE + 0x100;
 const uintptr_t GIC_DIST_ICENABLER_BASE = GIC_DIST_BASE + 0x180;
 const uintptr_t GIC_DIST_PRIORITY_BASE = GIC_DIST_BASE + 0x400;
 
-const uintptr_t GIC_CPU_BASE = 0x08010000;
 const uintptr_t GIC_CPU_CTL = GIC_CPU_BASE + 0x000;
 const uintptr_t GIC_CPU_PMR = GIC_CPU_BASE + 0x004;
 const uintptr_t GIC_CPU_IAR = GIC_CPU_BASE + 0x00C;
