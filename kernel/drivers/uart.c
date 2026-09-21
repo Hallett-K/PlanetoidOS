@@ -38,7 +38,8 @@ void uart_init()
 
 void uart_putc(char c)
 {
-    while (*flags & UART_FLAG_TXFF) { 0; }
+    while (*flags & UART_FLAG_TXFF);
+    
     *data = (uint32_t)c;
 }
 

@@ -5,9 +5,15 @@
 namespace MMU
 {
     alignas(4096) uint64_t level1_table[512];
+    alignas(4096) uint64_t level3_kernel_table[512];
+
+#if OS_PLATFORM_PI5
+    alignas(4096) uint64_t level2_low_table[512];
+    alignas(4096) uint64_t level2_peripheral_table[512];
+#else
     alignas(4096) uint64_t level2_table[512];
     alignas(4096) uint64_t level2_ram_table[512];
-    alignas(4096) uint64_t level3_kernel_table[512];
+#endif
 }
 
 namespace
@@ -17,6 +23,12 @@ namespace
     const uint64_t PAGE_DESCRIPTOR = 0b11;
     
     const uint64_t ADDRESS_MASK = 0x0000FFFFFFFFF000ULL;
+
+#if OS_PLATFORM_PI5
+    const uint64_t KERNEL_BASE = 0x00200000;
+#else
+    const uint64_t KERNEL_BASE = 0x40000000;
+#endif
 };
 
 namespace TranslationAttributes
@@ -26,6 +38,8 @@ namespace TranslationAttributes
     const uint64_t ATTR_SH0_INNER_SHAREABLE = 0b11ULL << 12;
     const uint64_t ATTR_IRGN0 = 0b01ULL << 8;
     const uint64_t ATTR_ORGN0 = 0b01ULL << 10;
+
+    const uint64_t ATTR_IPS_40BIT = 0b010ULL << 32;
 }
 
 namespace MemorySections
@@ -156,52 +170,97 @@ uint64_t* get_or_create_level3_table(uint64_t* level2_table, uint64_t virtual_ad
     return page_table.virtual_address;
 }
 
-void MMU::init()
+void init_pi5()
 {
-    level1_table[0] = make_table_descriptor((uint64_t)level2_table); // 0x00000000 - 0x3FFFFFFF covered by level 2 table
-    level1_table[1] = make_table_descriptor((uint64_t)level2_ram_table); // 0x40000000 - 0x7FFFFFFF RAM
-
-    level2_table[64] = make_device_block_descriptor(0x08000000, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN | MemoryBlockAttributes::ATTR_UXN); // identity map GIC block
-    level2_table[72] = make_device_block_descriptor(0x09000000, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN | MemoryBlockAttributes::ATTR_UXN); // identity map UART block
-
-    level2_ram_table[0] = make_table_descriptor((uint64_t)level3_kernel_table); // 0x40000000 - 0x40200000 Kernel
-    for (uint32_t i = 1; i < 512; i++)
-    {
-        level2_ram_table[i] = make_normal_block_descriptor(0x40000000 + (i * 0x200000), MemoryBlockAttributes::ATTR_EL1_RW);
-    }
+#if OS_PLATFORM_PI5
+    MMU::level1_table[0] = make_table_descriptor((uint64_t)MMU::level2_low_table);
+    MMU::level1_table[65] = make_table_descriptor((uint64_t)MMU::level2_peripheral_table);;
 
     for (uint32_t i = 0; i < 512; i++)
     {
+        MMU::level2_low_table[i] = make_normal_block_descriptor((uint64_t)i * 0x200000, MemoryBlockAttributes::ATTR_EL1_RW);
+    }
+
+    MMU::level2_low_table[1] = make_table_descriptor((uint64_t)MMU::level3_kernel_table);
+
+    MMU::level2_peripheral_table[488] = make_device_block_descriptor(0x107D000000, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN | MemoryBlockAttributes::ATTR_UXN); // UART
+    MMU::level2_peripheral_table[490] = make_device_block_descriptor(0x107D400000, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN | MemoryBlockAttributes::ATTR_UXN); // LED
+    MMU::level2_peripheral_table[511] = make_device_block_descriptor(0x107FE00000, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN | MemoryBlockAttributes::ATTR_UXN); // GIC
+#endif
+}
+
+void init_virt()
+{
+#if OS_PLATFORM_VIRT
+    MMU::level1_table[0] = make_table_descriptor((uint64_t)MMU::level2_table); // 0x00000000 - 0x3FFFFFFF covered by level 2 table
+    MMU::level1_table[1] = make_table_descriptor((uint64_t)MMU::level2_ram_table); // 0x40000000 - 0x7FFFFFFF RAM
+
+    MMU::level2_table[64] = make_device_block_descriptor(0x08000000, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN | MemoryBlockAttributes::ATTR_UXN); // identity map GIC block
+    MMU::level2_table[72] = make_device_block_descriptor(0x09000000, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN | MemoryBlockAttributes::ATTR_UXN); // identity map UART block
+
+    MMU::level2_ram_table[0] = make_table_descriptor((uint64_t)MMU::level3_kernel_table); // 0x40000000 - 0x40200000 Kernel
+    for (uint32_t i = 1; i < 512; i++)
+    {
+        MMU::level2_ram_table[i] = make_normal_block_descriptor(0x40000000 + (i * 0x200000), MemoryBlockAttributes::ATTR_EL1_RW);
+    }
+#endif
+}
+
+void MMU::init()
+{
+    for (uint32_t i = 0; i < 512; i++)
+    {
+        level1_table[i] = 0;
         level3_kernel_table[i] = 0;
+
+#if OS_PLATFORM_PI5
+        level2_low_table[i] = 0;
+        level2_peripheral_table[i] = 0;
+#else
+        level2_table[i] = 0;
+        level2_ram_table[i] = 0;
+#endif
+    }
+
+#if OS_PLATFORM_PI5
+    init_pi5();
+#else
+    init_virt();
+#endif
+
+    for (uint32_t i = 0; i < 512; i++)
+    {
+        const uint64_t address = KERNEL_BASE + ((uint64_t)i * 0x1000);
+        level3_kernel_table[i] = make_normal_page_descriptor(address, MemoryBlockAttributes::ATTR_EL1_RW);
     }
 
     for (uint64_t address = (uint64_t)&MemorySections::__text_start; address < (uint64_t)&MemorySections::__text_end; address += 0x1000)
     {
-        const uint32_t index = (address - 0x40000000) / 0x1000;
+        const uint32_t index = (address - KERNEL_BASE) / 0x1000;
         level3_kernel_table[index] = make_normal_page_descriptor(address, MemoryBlockAttributes::ATTR_EL1_RO);
     }
 
     for (uint64_t address = (uint64_t)&MemorySections::__rodata_start; address < (uint64_t)&MemorySections::__rodata_end; address += 0x1000)
     {
-        const uint32_t index = (address - 0x40000000) / 0x1000;
+        const uint32_t index = (address - KERNEL_BASE) / 0x1000;
         level3_kernel_table[index] = make_normal_page_descriptor(address, MemoryBlockAttributes::ATTR_EL1_RO | MemoryBlockAttributes::ATTR_PXN);
     }
 
     for (uint64_t address = (uint64_t)&MemorySections::__data_start; address < (uint64_t)&MemorySections::__data_end; address += 0x1000)
     {
-        const uint32_t index = (address - 0x40000000) / 0x1000;
+        const uint32_t index = (address - KERNEL_BASE) / 0x1000;
         level3_kernel_table[index] = make_normal_page_descriptor(address, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN);
     }
 
     for (uint64_t address = (uint64_t)&MemorySections::__bss_start; address < (uint64_t)&MemorySections::__bss_end; address += 0x1000)
     {
-        const uint32_t index = (address - 0x40000000) / 0x1000;
+        const uint32_t index = (address - KERNEL_BASE) / 0x1000;
         level3_kernel_table[index] = make_normal_page_descriptor(address, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN);
     }
 
     for (uint64_t address = (uint64_t)&MemorySections::__stack_bottom; address < (uint64_t)&MemorySections::__stack_top; address += 0x1000)
     {
-        const uint32_t index = (address - 0x40000000) / 0x1000;
+        const uint32_t index = (address - KERNEL_BASE) / 0x1000;
         level3_kernel_table[index] = make_normal_page_descriptor(address, MemoryBlockAttributes::ATTR_EL1_RW | MemoryBlockAttributes::ATTR_PXN);
     }
 
@@ -223,6 +282,9 @@ void MMU::init()
         | TranslationAttributes::ATTR_TG0_4KB
         | TranslationAttributes::ATTR_SH0_INNER_SHAREABLE
         | TranslationAttributes::ATTR_IRGN0
+#if OS_PLATFORM_PI5
+        | TranslationAttributes::ATTR_IPS_40BIT
+#endif
         | TranslationAttributes::ATTR_ORGN0;
 
     asm volatile("msr tcr_el1, %0"
@@ -231,12 +293,17 @@ void MMU::init()
         : "memory");
 
     data_barrier();
+    invalidate_tlb();
+    data_barrier();
     instruction_barrier();
+}
 
-    // Enable MMU
+void MMU::enable()
+{
     uint64_t sctlr;
     asm volatile("mrs %0, sctlr_el1"
         : "=r"(sctlr));
+        
     sctlr |= 1ULL;
     asm volatile("msr sctlr_el1, %0"
         : 
@@ -280,6 +347,7 @@ void MMU::invalidate_tlb_range(uint64_t virtual_address, uint64_t page_count)
 
 MMU::PageTable MMU::allocate_page_table()
 {
+#if OS_PLATFORM_VIRT // TEMP
     const uint64_t physical_address = PhysicalMemory::allocate_frame();
 
     if (physical_address == 0)
@@ -298,6 +366,7 @@ MMU::PageTable MMU::allocate_page_table()
         physical_address,
         virtual_address
     };
+#endif
 }
 
 bool MMU::map_page(uint64_t virtual_address, uint64_t physical_address, MMU::EMemoryType memory_type, uint64_t permissions)

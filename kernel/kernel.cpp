@@ -80,8 +80,8 @@ extern "C" void kernel_main()
     GIC::init();
     Log::info("GIC initialised!");
 
-    
     MMU::init();
+    MMU::enable();
     Log::info("MMU Enabled!");
     
     PhysicalMemory::init();

@@ -12,6 +12,7 @@ set(COMMON_SOURCES
     kernel/core/interrupts.cpp
     kernel/core/log.cpp
     kernel/drivers/uart.c
+    kernel/memory/mmu.cpp
 )
 
 if (PLATFORM STREQUAL "pi5")
@@ -36,7 +37,6 @@ elseif (PLATFORM STREQUAL "virt")
     kernel/core/task/wait_queue.cpp
     kernel/memory/kernel_heap.cpp
     kernel/memory/memory_map.cpp 
-    kernel/memory/mmu.cpp
     kernel/memory/physical_memory.cpp
     kernel/memory/virtual_memory.cpp
     )

@@ -12,7 +12,6 @@ static const uintptr_t GIO_LED_IODIR = GIO_LED_BASE + GIO_LED_IODIR_OFFSET;
 
 static const uint32_t LED_BIT = 1u << 9;
 
-static volatile uint32_t* base = (volatile uint32_t*)GIO_LED_BASE;
 static volatile uint32_t* data = (volatile uint32_t*)GIO_LED_DATA;
 static volatile uint32_t* iodir = (volatile uint32_t*)GIO_LED_IODIR;
 

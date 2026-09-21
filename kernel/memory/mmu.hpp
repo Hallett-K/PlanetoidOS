@@ -5,9 +5,15 @@
 namespace MMU
 {
     alignas(4096) extern uint64_t level1_table[512];
+    alignas(4096) extern uint64_t level3_kernel_table[512];
+    
+#if OS_PLATFORM_PI5
+    alignas(4096) extern uint64_t level2_low_table[512];
+    alignas(4096) extern uint64_t level2_peripheral_table[512];
+#else
     alignas(4096) extern uint64_t level2_table[512];
     alignas(4096) extern uint64_t level2_ram_table[512];
-    alignas(4096) extern uint64_t level3_kernel_table[512];
+#endif
 
     void init();
     void enable();
