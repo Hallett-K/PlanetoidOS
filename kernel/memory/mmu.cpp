@@ -347,7 +347,6 @@ void MMU::invalidate_tlb_range(uint64_t virtual_address, uint64_t page_count)
 
 MMU::PageTable MMU::allocate_page_table()
 {
-#if OS_PLATFORM_VIRT // TEMP
     const uint64_t physical_address = PhysicalMemory::allocate_frame();
 
     if (physical_address == 0)
@@ -366,7 +365,6 @@ MMU::PageTable MMU::allocate_page_table()
         physical_address,
         virtual_address
     };
-#endif
 }
 
 bool MMU::map_page(uint64_t virtual_address, uint64_t physical_address, MMU::EMemoryType memory_type, uint64_t permissions)

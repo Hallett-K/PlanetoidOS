@@ -6,16 +6,23 @@
 #include "drivers/pi/status_led.h"
 #include "drivers/uart.h"
 #include "memory/mmu.hpp"
+#include "memory/physical_memory.hpp"
 
 extern "C" void kernel_main()
 {
     status_led_init();
     status_led_on();
+
     uart_init();
+
     Interrupts::init();
     GIC::init();
+
     MMU::init();
     MMU::enable();
+
+    PhysicalMemory::init();
+
     status_led_off();
 
     while (true)

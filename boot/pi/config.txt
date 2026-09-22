@@ -3,3 +3,6 @@ kernel=kernel-pi5
 kernel_address=0x200000
 enable_uart=1
 os_check=0
+
+framebuffer_depth=32
+framebuffer_ignore_alpha=1

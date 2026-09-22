@@ -3,11 +3,27 @@
 #include "core/log.hpp"
 #include "memory_map.hpp"
 
+namespace KernelMemory
+{
+    extern "C"
+    {
+        extern uint8_t __text_start;
+        extern uint8_t __stack_top;
+    }
+}
+
 namespace
 {
+#if OS_PLATFORM_PI5
+    const uint64_t PHYSICAL_MEMORY_BASE = 0x00000000;
+#else
     const uint64_t PHYSICAL_MEMORY_BASE = 0x40000000;
+#endif
     const uint64_t PAGE_SIZE = 4096;
     uint64_t frame_count = 0;
+
+    const uint64_t KERNEL_START = (uint64_t)&KernelMemory::__text_start;
+    const uint64_t KERNEL_END = (uint64_t)&KernelMemory::__stack_top;
 };
 
 namespace PhysicalBitmap
@@ -19,15 +35,6 @@ namespace PhysicalBitmap
     }
 
     uint8_t* const bitmap_start = &__physical_bitmap_start;
-}
-
-namespace KernelMemory
-{
-    extern "C"
-    {
-        extern uint8_t __text_start;
-        extern uint8_t __stack_top;
-    }
 }
 
 namespace
@@ -111,10 +118,11 @@ void PhysicalMemory::init()
         }
     }
 
-    const uint64_t kernel_start = 0x40000000;
-    const uint64_t kernel_end = 0x40200000;
+#if OS_PLATFORM_PI5
+    set_frame_range_used(0x00000000, KERNEL_START);
+#endif
 
-    set_frame_range_used(kernel_start, kernel_end - kernel_start);
+    set_frame_range_used(KERNEL_START, KERNEL_END - KERNEL_START);
 }
 
 uint64_t PhysicalMemory::allocate_frame()

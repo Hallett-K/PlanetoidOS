@@ -5,11 +5,19 @@ namespace
     Memory::MemoryMap memory_map =
     {
         {
+#if OS_PLATFORM_PI5
+            {
+                0x00000000,
+                0x40000000,
+                Memory::ERegionType::Usable
+            }
+#else
             {
                 0x40000000,
                 0x100000000,
                 Memory::ERegionType::Usable
             }
+#endif
         },
         1
     };
